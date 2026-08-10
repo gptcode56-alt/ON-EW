@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>WE Router Dashboard</title>
 
 <style>
+
+/* ==================================================
+   الخط والإعدادات
+================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
 
@@ -25,8 +33,14 @@ body{
     --purple:#7b2cff;
     --purple2:#a45cff;
     --card:#15151b;
+    --border:#292932;
     --muted:#aaa;
 }
+
+
+/* ==================================================
+   الحاوية
+================================================== */
 
 .container{
     width:min(1050px,94%);
@@ -34,7 +48,10 @@ body{
     padding:18px 0 40px;
 }
 
-/* ================= HEADER ================= */
+
+/* ==================================================
+   الهيدر
+================================================== */
 
 header{
     background:linear-gradient(135deg,#0d0d12,#211034);
@@ -56,12 +73,22 @@ header{
     width:58px;
     height:58px;
     border-radius:17px;
-    background:linear-gradient(135deg,var(--purple),#4a00c8);
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        #4a00c8
+    );
+
     display:grid;
     place-items:center;
+
     font-size:25px;
     font-weight:800;
-    box-shadow:0 10px 30px #7b2cff55;
+
+    box-shadow:
+    0 10px 30px #7b2cff55;
 }
 
 h1{
@@ -75,26 +102,47 @@ header p{
     font-size:13px;
 }
 
-/* ================= ROUTER ================= */
+
+/* ==================================================
+   شكل الراوتر
+================================================== */
 
 .router{
     height:110px;
-    background:linear-gradient(180deg,#eeeeee,#bfc1c8);
+
+    background:
+    linear-gradient(
+        180deg,
+        #eeeeee,
+        #bfc1c8
+    );
+
     border-radius:25px;
+
     margin:70px auto 10px;
+
     position:relative;
-    box-shadow:0 15px 35px #0008;
+
+    box-shadow:
+    0 15px 35px #0008;
+
     max-width:650px;
 }
 
 .router::before,
 .router::after{
+
     content:"";
+
     position:absolute;
+
     width:13px;
     height:90px;
+
     background:#777;
+
     border-radius:8px;
+
     top:-54px;
 }
 
@@ -107,55 +155,89 @@ header p{
 }
 
 .router .lights{
+
     position:absolute;
+
     bottom:18px;
+
     left:50%;
-    transform:translateX(-50%);
+
+    transform:
+    translateX(-50%);
+
     display:flex;
+
     gap:8px;
 }
 
 .light{
+
     width:9px;
     height:9px;
+
     border-radius:50%;
+
     background:#6f2cff;
-    box-shadow:0 0 12px #7b2cff;
+
+    box-shadow:
+    0 0 12px #7b2cff;
 }
 
 .router .name{
+
     position:absolute;
+
     right:28px;
     top:35px;
+
     color:#333;
+
     font-weight:800;
 }
 
-/* ================= STATS ================= */
+
+/* ==================================================
+   الإحصائيات
+================================================== */
 
 .stats{
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+    repeat(3,1fr);
+
     gap:12px;
+
     margin-bottom:15px;
 }
 
 .card{
+
     background:var(--card);
-    border:1px solid #292932;
+
+    border:1px solid var(--border);
+
     border-radius:18px;
+
     padding:18px;
 }
 
 .stat small{
+
     color:var(--muted);
+
     display:block;
+
     font-size:12px;
 }
 
 .stat strong{
+
     font-size:25px;
+
     display:block;
+
     margin-top:4px;
 }
 
@@ -163,57 +245,111 @@ header p{
     color:#a45cff;
 }
 
-/* ================= PROGRESS ================= */
+
+/* ==================================================
+   شريط الاستهلاك
+================================================== */
 
 .progressCard{
     margin-bottom:15px;
 }
 
 .progressTop{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:10px;
 }
 
 .bar{
+
     height:13px;
+
     background:#292932;
+
     border-radius:20px;
+
     overflow:hidden;
 }
 
 .fill{
+
     height:100%;
+
     width:0;
-    background:linear-gradient(90deg,#6d18ff,#b06cff);
+
+    background:
+    linear-gradient(
+        90deg,
+        #6d18ff,
+        #b06cff
+    );
+
     border-radius:20px;
+
     transition:.3s;
 }
 
-/* ================= DEVICES ================= */
+
+/* ==================================================
+   عنوان الأجهزة
+================================================== */
 
 .sectionTitle{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:12px;
 }
 
 .sectionTitle h2{
+
     font-size:18px;
+
     margin:0;
 }
 
+
+/* ==================================================
+   الأزرار
+================================================== */
+
 button{
+
     border:0;
+
     border-radius:12px;
+
     padding:10px 15px;
+
     font-family:inherit;
+
     font-weight:700;
+
     cursor:pointer;
+
     color:#fff;
-    background:linear-gradient(135deg,var(--purple),#4d0fc9);
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        #4d0fc9
+    );
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+button:active{
+    transform:scale(.96);
 }
 
 button.secondary{
@@ -221,32 +357,54 @@ button.secondary{
 }
 
 button.danger{
+
     background:#4b1820;
+
     color:#ffb7bf;
 }
 
+
+/* ==================================================
+   الأجهزة
+================================================== */
+
 .devices{
+
     display:grid;
+
     gap:10px;
 }
 
 .device{
+
     display:flex;
+
     align-items:center;
+
     gap:13px;
+
     background:var(--card);
-    border:1px solid #292932;
+
+    border:1px solid var(--border);
+
     border-radius:16px;
+
     padding:13px;
 }
 
 .icon{
+
     width:43px;
     height:43px;
+
     border-radius:13px;
+
     background:#261343;
+
     display:grid;
+
     place-items:center;
+
     font-size:20px;
 }
 
@@ -255,68 +413,111 @@ button.danger{
 }
 
 .deviceInfo b{
+
     display:block;
+
     font-size:14px;
 }
 
 .deviceInfo span{
+
     font-size:11px;
+
     color:#999;
 }
 
 .used{
+
     text-align:left;
+
     min-width:75px;
 }
 
 .used b{
+
     display:block;
+
     color:#b16bff;
 }
 
 .used span{
+
     font-size:10px;
+
     color:#888;
 }
 
 .actions{
+
     display:flex;
+
     gap:6px;
 }
 
 .actions button{
+
     padding:8px 10px;
+
     font-size:12px;
 }
 
+
+/* ==================================================
+   لا توجد أجهزة
+================================================== */
+
 .empty{
+
     text-align:center;
+
     color:#888;
+
     padding:30px;
 }
 
-/* ================= MODAL ================= */
+
+/* ==================================================
+   النوافذ
+================================================== */
 
 .modal{
+
     display:none;
+
     position:fixed;
+
     inset:0;
-    background:#000b;
+
+    background:#000c;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
-    z-index:10;
+
+    z-index:100;
 }
 
 .modal.show{
     display:flex;
 }
 
+
+/* ==================================================
+   نافذة إضافة وتعديل
+================================================== */
+
 .modalBox{
+
     width:min(450px,100%);
+
     background:#15151b;
+
     border:1px solid #38204f;
+
     border-radius:22px;
+
     padding:20px;
 }
 
@@ -325,21 +526,35 @@ button.danger{
 }
 
 label{
+
     display:block;
+
     color:#bbb;
+
     font-size:12px;
+
     margin:10px 0 5px;
 }
 
 input{
+
     width:100%;
+
     padding:12px;
+
     border-radius:11px;
+
     border:1px solid #34343e;
+
     background:#0d0d11;
+
     color:white;
+
     font-family:inherit;
+
     outline:none;
+
+    font-size:16px;
 }
 
 input:focus{
@@ -347,8 +562,11 @@ input:focus{
 }
 
 .modalActions{
+
     display:flex;
+
     gap:8px;
+
     margin-top:18px;
 }
 
@@ -356,56 +574,257 @@ input:focus{
     flex:1;
 }
 
-footer{
+
+/* ==================================================
+   شاشة الباسورد
+================================================== */
+
+.passwordBox{
+
+    width:min(380px,100%);
+
+    background:#15151b;
+
+    border:1px solid #38204f;
+
+    border-radius:25px;
+
+    padding:22px;
+
     text-align:center;
+
+    box-shadow:
+    0 20px 60px #000;
+}
+
+.passwordBox h3{
+
+    margin:0;
+
+    font-size:20px;
+}
+
+.passwordBox p{
+
+    color:#999;
+
+    font-size:12px;
+
+    margin:7px 0 15px;
+}
+
+
+/* ==================================================
+   نقاط الباسورد
+================================================== */
+
+.passwordDots{
+
+    height:45px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    direction:ltr;
+
+    font-size:25px;
+
+    letter-spacing:7px;
+
+    color:#a45cff;
+
+    margin-bottom:15px;
+}
+
+
+/* ==================================================
+   لوحة الأرقام
+================================================== */
+
+.keypad{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:9px;
+}
+
+.keypad button{
+
+    height:55px;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    background:#24242c;
+
+    border:1px solid #34343e;
+}
+
+.keypad button:active{
+
+    transform:scale(.94);
+
+    background:#7b2cff;
+}
+
+.keypad .clear{
+
+    font-size:13px;
+
+    background:#352020;
+
+    color:#ff9c9c;
+}
+
+.keypad .back{
+
+    font-size:22px;
+
+    background:#252038;
+}
+
+.cancelPassword{
+
+    width:100%;
+
+    margin-top:12px;
+
+    background:#292930;
+}
+
+
+/* ==================================================
+   رسالة خطأ الباسورد
+================================================== */
+
+.passwordError{
+
+    color:#ff6565;
+
+    font-size:12px;
+
+    min-height:20px;
+
+    margin-top:5px;
+}
+
+
+/* ==================================================
+   الفوتر
+================================================== */
+
+footer{
+
+    text-align:center;
+
     color:#666;
+
     font-size:11px;
+
     margin-top:20px;
 }
 
-/* ================= MOBILE ================= */
+
+/* ==================================================
+   الموبايل
+================================================== */
 
 @media(max-width:650px){
 
     .stats{
+
         grid-template-columns:1fr;
+
     }
 
     .router{
+
         height:90px;
+
     }
 
     .router::before,
     .router::after{
+
         height:65px;
+
         top:-42px;
+
     }
 
     .device{
+
         flex-wrap:wrap;
+
     }
 
     .used{
+
         margin-right:auto;
+
     }
 
     .actions{
+
         width:100%;
+
     }
 
     .actions button{
+
         flex:1;
+
+    }
+
+    .sectionTitle{
+
+        gap:10px;
+
+    }
+
+    .sectionTitle h2{
+
+        font-size:16px;
+
     }
 
 }
 
+
+/* ==================================================
+   منع تحديد أزرار لوحة الأرقام
+================================================== */
+
+.keypad,
+.keypad button{
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+}
+
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
 
 <header>
 
@@ -430,6 +849,8 @@ footer{
     </div>
 
 
+    <!-- الراوتر -->
+
     <div class="router">
 
         <div class="name">
@@ -439,8 +860,11 @@ footer{
         <div class="lights">
 
             <i class="light"></i>
+
             <i class="light"></i>
+
             <i class="light"></i>
+
             <i class="light"></i>
 
         </div>
@@ -450,9 +874,13 @@ footer{
 </header>
 
 
-<!-- ================= الإحصائيات ================= -->
+
+<!-- ==================================================
+     الإحصائيات
+================================================== -->
 
 <div class="stats">
+
 
     <div class="card stat">
 
@@ -473,8 +901,12 @@ footer{
             المستخدم
         </small>
 
-        <strong class="purple" id="used">
+        <strong
+            class="purple"
+            id="used">
+
             0 GB
+
         </strong>
 
     </div>
@@ -487,15 +919,21 @@ footer{
         </small>
 
         <strong id="remaining">
+
             250 GB
+
         </strong>
 
     </div>
 
+
 </div>
 
 
-<!-- ================= نسبة الاستهلاك ================= -->
+
+<!-- ==================================================
+     الاستهلاك
+================================================== -->
 
 <div class="card progressCard">
 
@@ -511,6 +949,7 @@ footer{
 
     </div>
 
+
     <div class="bar">
 
         <div
@@ -523,9 +962,13 @@ footer{
 </div>
 
 
-<!-- ================= الأجهزة ================= -->
+
+<!-- ==================================================
+     الأجهزة
+================================================== -->
 
 <div class="card">
+
 
     <div class="sectionTitle">
 
@@ -533,8 +976,11 @@ footer{
             📱 الأجهزة المتصلة
         </h2>
 
+
         <button onclick="openAdd()">
+
             + إضافة جهاز
+
         </button>
 
     </div>
@@ -545,6 +991,7 @@ footer{
         class="devices">
     </div>
 
+
 </div>
 
 
@@ -554,48 +1001,70 @@ footer{
 
 </footer>
 
+
 </div>
 
 
-<!-- ================= نافذة التعديل ================= -->
+
+<!-- ==================================================
+     نافذة إضافة / تعديل
+================================================== -->
 
 <div
     class="modal"
     id="modal">
 
+
     <div class="modalBox">
 
+
         <h3 id="modalTitle">
+
             إضافة جهاز
+
         </h3>
 
 
         <label>
+
             اسم الجهاز
+
         </label>
+
 
         <input
             id="deviceName"
-            placeholder="اسم الجهاز">
+            placeholder="اسم الجهاز"
+            autocomplete="off"
+            inputmode="none">
 
 
         <label>
+
             الاستهلاك بالجيجابايت
+
         </label>
+
 
         <input
             id="deviceUsage"
             type="number"
             min="0"
             step="0.1"
-            placeholder="مثال: 15">
+            placeholder="مثال: 15"
+            autocomplete="off"
+            inputmode="none">
 
 
         <div class="modalActions">
 
+
             <button onclick="saveDevice()">
+
                 حفظ
+
             </button>
+
 
             <button
                 class="secondary"
@@ -605,38 +1074,198 @@ footer{
 
             </button>
 
+
         </div>
+
 
     </div>
 
 </div>
 
 
+
+<!-- ==================================================
+     شاشة الباسورد
+================================================== -->
+
+<div
+    class="modal"
+    id="passwordModal">
+
+
+    <div class="passwordBox">
+
+
+        <h3>
+
+            🔐 تأكيد العملية
+
+        </h3>
+
+
+        <p>
+
+            أدخل كلمة المرور للمتابعة
+
+        </p>
+
+
+        <!-- نقاط الباسورد -->
+
+        <div
+            class="passwordDots"
+            id="passwordDots">
+
+            ○ ○ ○ ○
+
+        </div>
+
+
+        <!-- رسالة الخطأ -->
+
+        <div
+            class="passwordError"
+            id="passwordError">
+        </div>
+
+
+        <!-- لوحة الأرقام -->
+
+        <div class="keypad">
+
+
+            <button onclick="pressKey('1')">
+                1
+            </button>
+
+            <button onclick="pressKey('2')">
+                2
+            </button>
+
+            <button onclick="pressKey('3')">
+                3
+            </button>
+
+
+            <button onclick="pressKey('4')">
+                4
+            </button>
+
+            <button onclick="pressKey('5')">
+                5
+            </button>
+
+            <button onclick="pressKey('6')">
+                6
+            </button>
+
+
+            <button onclick="pressKey('7')">
+                7
+            </button>
+
+            <button onclick="pressKey('8')">
+                8
+            </button>
+
+            <button onclick="pressKey('9')">
+                9
+            </button>
+
+
+            <button
+                class="clear"
+                onclick="clearPassword()">
+
+                مسح
+
+            </button>
+
+
+            <button onclick="pressKey('0')">
+
+                0
+
+            </button>
+
+
+            <button
+                class="back"
+                onclick="backspace()">
+
+                ⌫
+
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="cancelPassword"
+            onclick="closePassword()">
+
+            إلغاء
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
 <script>
 
-/* ================= البيانات ================= */
 
-const KEY = "we_router_devices_v2";
-
-const TOTAL_KEY = "we_router_total_v2";
-
-
-/*
-    إجمالي الباقة
-    250 جيجا
-*/
-
-let total = 250;
+/* ==================================================
+   الإعدادات
+================================================== */
 
 
 /*
-    الأجهزة
+   كلمة مرور الإدارة
 */
+
+const ADMIN_PASSWORD = "2009";
+
+
+/*
+   إجمالي الباقة
+*/
+
+const TOTAL_PACKAGE = 250;
+
+
+/*
+   مفتاح حفظ الأجهزة
+*/
+
+const STORAGE_KEY =
+    "we_router_devices_final";
+
+
+/* ==================================================
+   الأجهزة الافتراضية
+================================================== */
 
 let devices =
     JSON.parse(
-        localStorage.getItem(KEY) || "null"
-    ) || [
+        localStorage.getItem(
+            STORAGE_KEY
+        )
+    );
+
+
+/*
+   لو مفيش بيانات محفوظة
+   استخدم الأجهزة دي
+*/
+
+if(!devices){
+
+    devices = [
 
         {
             id:1,
@@ -689,163 +1318,267 @@ let devices =
 
     ];
 
-
-let editing = null;
-
-
-/* ================= حفظ البيانات ================= */
-
-function save(){
-
-    localStorage.setItem(
-        KEY,
-        JSON.stringify(devices)
-    );
-
-    localStorage.setItem(
-        TOTAL_KEY,
-        total
-    );
-
-    render();
-
 }
 
 
-/* ================= تحديث الشاشة ================= */
+/* ==================================================
+   متغيرات النظام
+================================================== */
+
+let editing = null;
+
+let passwordInput = "";
+
+let pendingAction = null;
+
+let pendingId = null;
+
+
+/* ==================================================
+   عرض البيانات
+================================================== */
 
 function render(){
 
+
+    /*
+       حساب الاستهلاك
+    */
+
     let used =
         devices.reduce(
-            (sum,device)=>
-                sum + Number(device.usage || 0),
+
+            (sum,device) =>
+
+            sum +
+            Number(
+                device.usage || 0
+            ),
+
             0
+
         );
 
+
+    /*
+       المتبقي
+    */
 
     let remaining =
         Math.max(
-            total - used,
+            TOTAL_PACKAGE - used,
             0
         );
 
 
+    /*
+       النسبة
+    */
+
     let percent =
         Math.min(
-            (used / total) * 100,
+
+            (
+                used /
+                TOTAL_PACKAGE
+            ) * 100,
+
             100
+
         );
 
 
-    document.getElementById("total")
-        .textContent =
-        fmt(total) + " GB";
+    /*
+       إجمالي الباقة
+    */
+
+    document
+    .getElementById("total")
+    .textContent =
+        formatNumber(
+            TOTAL_PACKAGE
+        ) +
+        " GB";
 
 
-    document.getElementById("used")
-        .textContent =
-        fmt(used) + " GB";
+    /*
+       المستخدم
+    */
+
+    document
+    .getElementById("used")
+    .textContent =
+        formatNumber(used) +
+        " GB";
 
 
-    document.getElementById("remaining")
-        .textContent =
-        fmt(remaining) + " GB";
+    /*
+       المتبقي
+    */
+
+    document
+    .getElementById("remaining")
+    .textContent =
+        formatNumber(remaining) +
+        " GB";
 
 
-    document.getElementById("percent")
-        .textContent =
-        Math.round(percent) + "%";
+    /*
+       النسبة
+    */
+
+    document
+    .getElementById("percent")
+    .textContent =
+        Math.round(percent) +
+        "%";
 
 
-    document.getElementById("fill")
-        .style.width =
-        percent + "%";
+    /*
+       شريط الاستهلاك
+    */
 
+    document
+    .getElementById("fill")
+    .style.width =
+        percent +
+        "%";
+
+
+    /*
+       الأجهزة
+    */
 
     const box =
-        document.getElementById("devices");
+        document.getElementById(
+            "devices"
+        );
 
+
+    /*
+       لو مفيش أجهزة
+    */
 
     if(devices.length === 0){
 
-        box.innerHTML =
-            '<div class="empty">لا توجد أجهزة مضافة</div>';
+        box.innerHTML = `
+
+            <div class="empty">
+
+                لا توجد أجهزة مضافة
+
+            </div>
+
+        `;
 
         return;
 
     }
 
 
+    /*
+       عرض الأجهزة
+    */
+
     box.innerHTML =
-        devices.map(device => `
 
-            <div class="device">
+        devices.map(
+            device => `
 
-                <div class="icon">
+                <div class="device">
 
-                    ${device.icon || "📱"}
+
+                    <div class="icon">
+
+                        ${device.icon || "📱"}
+
+                    </div>
+
+
+                    <div class="deviceInfo">
+
+                        <b>
+
+                            ${escapeHTML(
+                                device.name
+                            )}
+
+                        </b>
+
+                        <span>
+
+                            استهلاك الجهاز
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="used">
+
+                        <b>
+
+                            ${formatNumber(
+                                device.usage
+                            )}
+                            GB
+
+                        </b>
+
+                        <span>
+
+                            مستخدم
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="actions">
+
+
+                        <button
+                            class="secondary"
+                            onclick="
+                                editDevice(
+                                    ${device.id}
+                                )
+                            ">
+
+                            تعديل
+
+                        </button>
+
+
+                        <button
+                            class="danger"
+                            onclick="
+                                removeDevice(
+                                    ${device.id}
+                                )
+                            ">
+
+                            حذف
+
+                        </button>
+
+
+                    </div>
+
 
                 </div>
 
-
-                <div class="deviceInfo">
-
-                    <b>
-                        ${escapeHTML(device.name)}
-                    </b>
-
-                    <span>
-                        استهلاك الجهاز
-                    </span>
-
-                </div>
-
-
-                <div class="used">
-
-                    <b>
-                        ${fmt(device.usage)} GB
-                    </b>
-
-                    <span>
-                        مستخدم
-                    </span>
-
-                </div>
-
-
-                <div class="actions">
-
-                    <button
-                        class="secondary"
-                        onclick="editDevice(${device.id})">
-
-                        تعديل
-
-                    </button>
-
-
-                    <button
-                        class="danger"
-                        onclick="removeDevice(${device.id})">
-
-                        حذف
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        `).join("");
+            `
+        ).join("");
 
 }
 
 
-/* ================= تنسيق الأرقام ================= */
+/* ==================================================
+   تنسيق الأرقام
+================================================== */
 
-function fmt(number){
+function formatNumber(number){
 
     return Number(number)
         .toLocaleString(
@@ -858,7 +1591,9 @@ function fmt(number){
 }
 
 
-/* ================= حماية النص ================= */
+/* ==================================================
+   حماية النص
+================================================== */
 
 function escapeHTML(text){
 
@@ -885,98 +1620,233 @@ function escapeHTML(text){
 }
 
 
-/* ================= إضافة جهاز ================= */
+/* ==================================================
+   حفظ البيانات
+================================================== */
 
-function openAdd(){
+function saveData(){
 
-    editing = null;
+    localStorage.setItem(
 
+        STORAGE_KEY,
 
-    document.getElementById("modalTitle")
-        .textContent =
-        "إضافة جهاز";
+        JSON.stringify(
+            devices
+        )
 
+    );
 
-    document.getElementById("deviceName")
-        .value = "";
-
-
-    document.getElementById("deviceUsage")
-        .value = "";
-
-
-    document.getElementById("modal")
-        .classList.add("show");
+    render();
 
 }
 
 
-/* ================= تعديل جهاز ================= */
+/* ==================================================
+   فتح إضافة جهاز
+================================================== */
+
+function openAdd(){
+
+    /*
+       طلب الباسورد
+    */
+
+    askPassword(
+        "add"
+    );
+
+}
+
+
+/* ==================================================
+   فتح نموذج الإضافة بعد الباسورد
+================================================== */
+
+function openAddForm(){
+
+    editing = null;
+
+
+    document
+    .getElementById(
+        "modalTitle"
+    )
+    .textContent =
+        "إضافة جهاز";
+
+
+    document
+    .getElementById(
+        "deviceName"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "deviceUsage"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "modal"
+    )
+    .classList.add(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   تعديل الجهاز
+================================================== */
 
 function editDevice(id){
 
+    askPassword(
+        "edit",
+        id
+    );
+
+}
+
+
+/* ==================================================
+   فتح نموذج التعديل
+================================================== */
+
+function openEditForm(id){
+
     let device =
         devices.find(
+
             item =>
                 item.id === id
+
         );
+
+
+    if(!device){
+
+        return;
+
+    }
 
 
     editing = id;
 
 
-    document.getElementById("modalTitle")
-        .textContent =
+    document
+    .getElementById(
+        "modalTitle"
+    )
+    .textContent =
         "تعديل الجهاز";
 
 
-    document.getElementById("deviceName")
-        .value =
+    document
+    .getElementById(
+        "deviceName"
+    )
+    .value =
         device.name;
 
 
-    document.getElementById("deviceUsage")
-        .value =
+    document
+    .getElementById(
+        "deviceUsage"
+    )
+    .value =
         device.usage;
 
 
-    document.getElementById("modal")
-        .classList.add("show");
+    document
+    .getElementById(
+        "modal"
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
 
-/* ================= إغلاق النافذة ================= */
+/* ==================================================
+   حذف الجهاز
+================================================== */
 
-function closeModal(){
+function removeDevice(id){
 
-    document.getElementById("modal")
-        .classList.remove("show");
+    askPassword(
+        "delete",
+        id
+    );
 
 }
 
 
-/* ================= حفظ الجهاز ================= */
+/* ==================================================
+   تنفيذ الحذف بعد الباسورد
+================================================== */
+
+function deleteDevice(id){
+
+    devices =
+        devices.filter(
+
+            device =>
+                device.id !== id
+
+        );
+
+
+    saveData();
+
+}
+
+
+/* ==================================================
+   حفظ إضافة / تعديل
+================================================== */
 
 function saveDevice(){
 
     let name =
-        document.getElementById("deviceName")
+        document
+        .getElementById(
+            "deviceName"
+        )
         .value
         .trim();
 
 
     let usage =
         Number(
-            document.getElementById("deviceUsage")
+            document
+            .getElementById(
+                "deviceUsage"
+            )
             .value
         );
 
 
+    /*
+       التحقق
+    */
+
     if(
+
         !name ||
+
         usage < 0 ||
-        Number.isNaN(usage)
+
+        Number.isNaN(
+            usage
+        )
+
     ){
 
         alert(
@@ -988,57 +1858,95 @@ function saveDevice(){
     }
 
 
+    /*
+       تعديل
+    */
+
     if(editing){
 
         let device =
             devices.find(
+
                 item =>
                     item.id === editing
+
             );
 
 
-        device.name = name;
+        if(device){
 
-        device.usage = usage;
+            device.name =
+                name;
+
+            device.usage =
+                usage;
+
+        }
 
     }
+
+
+    /*
+       إضافة
+    */
 
     else{
 
         devices.push({
 
-            id:Date.now(),
+            id:
+                Date.now(),
 
-            name:name,
+            name:
+                name,
 
-            usage:usage,
+            usage:
+                usage,
 
-            icon:pickIcon(name)
+            icon:
+                getDeviceIcon(
+                    name
+                )
 
         });
 
     }
 
 
+    /*
+       إغلاق النافذة
+    */
+
     closeModal();
 
-    save();
+
+    /*
+       حفظ
+    */
+
+    saveData();
 
 }
 
 
-/* ================= أيقونة الجهاز ================= */
+/* ==================================================
+   أيقونة الجهاز
+================================================== */
 
-function pickIcon(name){
+function getDeviceIcon(name){
 
     let n =
         name.toLowerCase();
 
 
     if(
+
         n.includes("laptop") ||
+
         n.includes("compaq") ||
+
         n.includes("لاب")
+
     ){
 
         return "💻";
@@ -1047,9 +1955,13 @@ function pickIcon(name){
 
 
     if(
+
         n.includes("tablet") ||
+
         n.includes("تابلت") ||
+
         n.includes("lenovo")
+
     ){
 
         return "📱";
@@ -1062,55 +1974,379 @@ function pickIcon(name){
 }
 
 
-/* ================= حذف جهاز ================= */
+/* ==================================================
+   إغلاق نموذج الجهاز
+================================================== */
 
-function removeDevice(id){
+function closeModal(){
+
+    document
+    .getElementById(
+        "modal"
+    )
+    .classList.remove(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   فتح شاشة الباسورد
+================================================== */
+
+function askPassword(
+    action,
+    id = null
+){
+
+    pendingAction =
+        action;
+
+
+    pendingId =
+        id;
+
+
+    passwordInput =
+        "";
+
+
+    document
+    .getElementById(
+        "passwordError"
+    )
+    .textContent =
+        "";
+
+
+    updatePasswordDots();
+
+
+    document
+    .getElementById(
+        "passwordModal"
+    )
+    .classList.add(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   إدخال رقم
+================================================== */
+
+function pressKey(number){
+
+    /*
+       أقصى 4 أرقام
+    */
 
     if(
-        confirm(
-            "هل تريد حذف هذا الجهاز؟"
-        )
+        passwordInput.length >= 4
     ){
 
-        devices =
-            devices.filter(
-                device =>
-                    device.id !== id
-            );
+        return;
+
+    }
 
 
-        save();
+    passwordInput +=
+        number;
+
+
+    updatePasswordDots();
+
+
+    /*
+       فحص تلقائي بعد الرقم الرابع
+    */
+
+    if(
+        passwordInput.length === 4
+    ){
+
+        setTimeout(
+
+            checkPassword,
+
+            180
+
+        );
 
     }
 
 }
 
 
-/* ================= إغلاق النافذة بالضغط خارجها ================= */
+/* ==================================================
+   عرض النقاط
+================================================== */
 
-document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(event){
+function updatePasswordDots(){
 
-            if(
-                event.target.id === "modal"
-            ){
+    let dots = "";
 
-                closeModal();
 
-            }
+    for(
+        let i = 0;
+        i < 4;
+        i++
+    ){
+
+        if(
+            i <
+            passwordInput.length
+        ){
+
+            dots += "● ";
 
         }
+
+        else{
+
+            dots += "○ ";
+
+        }
+
+    }
+
+
+    document
+    .getElementById(
+        "passwordDots"
+    )
+    .textContent =
+        dots;
+
+}
+
+
+/* ==================================================
+   حذف آخر رقم
+================================================== */
+
+function backspace(){
+
+    passwordInput =
+        passwordInput.slice(
+            0,
+            -1
+        );
+
+
+    document
+    .getElementById(
+        "passwordError"
+    )
+    .textContent =
+        "";
+
+
+    updatePasswordDots();
+
+}
+
+
+/* ==================================================
+   مسح الباسورد
+================================================== */
+
+function clearPassword(){
+
+    passwordInput =
+        "";
+
+
+    document
+    .getElementById(
+        "passwordError"
+    )
+    .textContent =
+        "";
+
+
+    updatePasswordDots();
+
+}
+
+
+/* ==================================================
+   فحص الباسورد
+================================================== */
+
+function checkPassword(){
+
+    /*
+       الباسورد الصحيح
+    */
+
+    if(
+        passwordInput ===
+        ADMIN_PASSWORD
+    ){
+
+        closePassword();
+
+        executePendingAction();
+
+    }
+
+    else{
+
+        document
+        .getElementById(
+            "passwordError"
+        )
+        .textContent =
+            "❌ كلمة المرور غير صحيحة";
+
+
+        passwordInput =
+            "";
+
+
+        updatePasswordDots();
+
+    }
+
+}
+
+
+/* ==================================================
+   تنفيذ العملية المطلوبة
+================================================== */
+
+function executePendingAction(){
+
+    if(
+        pendingAction ===
+        "add"
+    ){
+
+        openAddForm();
+
+    }
+
+
+    else if(
+        pendingAction ===
+        "edit"
+    ){
+
+        openEditForm(
+            pendingId
+        );
+
+    }
+
+
+    else if(
+        pendingAction ===
+        "delete"
+    ){
+
+        deleteDevice(
+            pendingId
+        );
+
+    }
+
+
+    pendingAction =
+        null;
+
+    pendingId =
+        null;
+
+}
+
+
+/* ==================================================
+   إغلاق شاشة الباسورد
+================================================== */
+
+function closePassword(){
+
+    document
+    .getElementById(
+        "passwordModal"
+    )
+    .classList.remove(
+        "show"
     );
 
 
-/* ================= تشغيل الموقع ================= */
+    passwordInput =
+        "";
+
+
+    updatePasswordDots();
+
+}
+
+
+/* ==================================================
+   إغلاق المودال بالضغط خارجها
+================================================== */
+
+document
+.getElementById(
+    "modal"
+)
+.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.id ===
+            "modal"
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   إغلاق شاشة الباسورد من الخارج
+================================================== */
+
+document
+.getElementById(
+    "passwordModal"
+)
+.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.id ===
+            "passwordModal"
+        ){
+
+            closePassword();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   تشغيل الموقع
+================================================== */
 
 render();
 
 </script>
 
+
 </body>
-</html>
+
+    </html>
