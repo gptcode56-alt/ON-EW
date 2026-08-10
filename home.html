@@ -3,394 +3,405 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WE Router Dashboard</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Cairo, Arial, sans-serif;
-    background: #08080b;
-    color: #fff;
+body{
+    margin:0;
+    font-family:Cairo,Arial,sans-serif;
+    background:#08080b;
+    color:#fff;
 }
 
-:root {
-    --purple: #7b2cff;
-    --purple2: #a45cff;
-    --card: #15151b;
-    --muted: #aaa;
+:root{
+    --purple:#7b2cff;
+    --purple2:#a45cff;
+    --card:#15151b;
+    --muted:#aaa;
 }
 
-.container {
-    width: min(1050px, 94%);
-    margin: auto;
-    padding: 18px 0 40px;
+.container{
+    width:min(1050px,94%);
+    margin:auto;
+    padding:18px 0 40px;
 }
 
-/* Header */
-header {
-    background: linear-gradient(135deg, #0d0d12, #211034);
-    border: 1px solid #2e1b47;
-    border-radius: 24px;
-    padding: 22px;
-    margin-bottom: 18px;
-    position: relative;
-    overflow: hidden;
+/* ================= HEADER ================= */
+
+header{
+    background:linear-gradient(135deg,#0d0d12,#211034);
+    border:1px solid #2e1b47;
+    border-radius:24px;
+    padding:22px;
+    margin-bottom:18px;
+    position:relative;
+    overflow:hidden;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
 }
 
-.logo {
-    width: 58px;
-    height: 58px;
-    border-radius: 17px;
-    background: linear-gradient(135deg, var(--purple), #4a00c8);
-    display: grid;
-    place-items: center;
-    font-size: 25px;
-    font-weight: 800;
-    box-shadow: 0 10px 30px #7b2cff55;
+.logo{
+    width:58px;
+    height:58px;
+    border-radius:17px;
+    background:linear-gradient(135deg,var(--purple),#4a00c8);
+    display:grid;
+    place-items:center;
+    font-size:25px;
+    font-weight:800;
+    box-shadow:0 10px 30px #7b2cff55;
 }
 
-h1 {
-    font-size: 22px;
-    margin: 0;
+h1{
+    font-size:22px;
+    margin:0;
 }
 
-header p {
-    margin: 3px 0 0;
-    color: #bbb;
-    font-size: 13px;
+header p{
+    margin:3px 0 0;
+    color:#bbb;
+    font-size:13px;
 }
 
-/* Router */
-.router {
-    height: 110px;
-    background: linear-gradient(180deg, #eee, #bfc1c8);
-    border-radius: 25px;
-    margin: 70px auto 10px;
-    position: relative;
-    box-shadow: 0 15px 35px #0008;
-    max-width: 650px;
+/* ================= ROUTER ================= */
+
+.router{
+    height:110px;
+    background:linear-gradient(180deg,#eeeeee,#bfc1c8);
+    border-radius:25px;
+    margin:70px auto 10px;
+    position:relative;
+    box-shadow:0 15px 35px #0008;
+    max-width:650px;
 }
 
 .router::before,
-.router::after {
-    content: "";
-    position: absolute;
-    width: 13px;
-    height: 90px;
-    background: #777;
-    border-radius: 8px;
-    top: -54px;
+.router::after{
+    content:"";
+    position:absolute;
+    width:13px;
+    height:90px;
+    background:#777;
+    border-radius:8px;
+    top:-54px;
 }
 
-.router::before {
-    right: 18%;
+.router::before{
+    right:18%;
 }
 
-.router::after {
-    left: 18%;
+.router::after{
+    left:18%;
 }
 
-.router .lights {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
+.router .lights{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:8px;
 }
 
-.light {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #6f2cff;
-    box-shadow: 0 0 12px #7b2cff;
+.light{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#6f2cff;
+    box-shadow:0 0 12px #7b2cff;
 }
 
-.router .name {
-    position: absolute;
-    right: 28px;
-    top: 35px;
-    color: #333;
-    font-weight: 800;
+.router .name{
+    position:absolute;
+    right:28px;
+    top:35px;
+    color:#333;
+    font-weight:800;
 }
 
-/* Statistics */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 15px;
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:15px;
 }
 
-.card {
-    background: var(--card);
-    border: 1px solid #292932;
-    border-radius: 18px;
-    padding: 18px;
+.card{
+    background:var(--card);
+    border:1px solid #292932;
+    border-radius:18px;
+    padding:18px;
 }
 
-.stat small {
-    color: var(--muted);
-    display: block;
-    font-size: 12px;
+.stat small{
+    color:var(--muted);
+    display:block;
+    font-size:12px;
 }
 
-.stat strong {
-    font-size: 25px;
-    display: block;
-    margin-top: 4px;
+.stat strong{
+    font-size:25px;
+    display:block;
+    margin-top:4px;
 }
 
-.purple {
-    color: #a45cff;
+.purple{
+    color:#a45cff;
 }
 
-/* Progress */
-.progressCard {
-    margin-bottom: 15px;
+/* ================= PROGRESS ================= */
+
+.progressCard{
+    margin-bottom:15px;
 }
 
-.progressTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+.progressTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
 }
 
-.bar {
-    height: 13px;
-    background: #292932;
-    border-radius: 20px;
-    overflow: hidden;
+.bar{
+    height:13px;
+    background:#292932;
+    border-radius:20px;
+    overflow:hidden;
 }
 
-.fill {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #6d18ff, #b06cff);
-    border-radius: 20px;
-    transition: .3s;
+.fill{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#6d18ff,#b06cff);
+    border-radius:20px;
+    transition:.3s;
 }
 
-/* Devices */
-.sectionTitle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+/* ================= DEVICES ================= */
+
+.sectionTitle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-.sectionTitle h2 {
-    font-size: 18px;
-    margin: 0;
+.sectionTitle h2{
+    font-size:18px;
+    margin:0;
 }
 
-button {
-    border: 0;
-    border-radius: 12px;
-    padding: 10px 15px;
-    font-family: inherit;
-    font-weight: 700;
-    cursor: pointer;
-    color: #fff;
-    background: linear-gradient(135deg, var(--purple), #4d0fc9);
+button{
+    border:0;
+    border-radius:12px;
+    padding:10px 15px;
+    font-family:inherit;
+    font-weight:700;
+    cursor:pointer;
+    color:#fff;
+    background:linear-gradient(135deg,var(--purple),#4d0fc9);
 }
 
-button.secondary {
-    background: #24242c;
+button.secondary{
+    background:#24242c;
 }
 
-button.danger {
-    background: #4b1820;
-    color: #ffb7bf;
+button.danger{
+    background:#4b1820;
+    color:#ffb7bf;
 }
 
-.devices {
-    display: grid;
-    gap: 10px;
+.devices{
+    display:grid;
+    gap:10px;
 }
 
-.device {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    background: var(--card);
-    border: 1px solid #292932;
-    border-radius: 16px;
-    padding: 13px;
+.device{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    background:var(--card);
+    border:1px solid #292932;
+    border-radius:16px;
+    padding:13px;
 }
 
-.icon {
-    width: 43px;
-    height: 43px;
-    border-radius: 13px;
-    background: #261343;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
+.icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    background:#261343;
+    display:grid;
+    place-items:center;
+    font-size:20px;
 }
 
-.deviceInfo {
-    flex: 1;
+.deviceInfo{
+    flex:1;
 }
 
-.deviceInfo b {
-    display: block;
-    font-size: 14px;
+.deviceInfo b{
+    display:block;
+    font-size:14px;
 }
 
-.deviceInfo span {
-    font-size: 11px;
-    color: #999;
+.deviceInfo span{
+    font-size:11px;
+    color:#999;
 }
 
-.used {
-    text-align: left;
-    min-width: 75px;
+.used{
+    text-align:left;
+    min-width:75px;
 }
 
-.used b {
-    display: block;
-    color: #b16bff;
+.used b{
+    display:block;
+    color:#b16bff;
 }
 
-.used span {
-    font-size: 10px;
-    color: #888;
+.used span{
+    font-size:10px;
+    color:#888;
 }
 
-.actions {
-    display: flex;
-    gap: 6px;
+.actions{
+    display:flex;
+    gap:6px;
 }
 
-.actions button {
-    padding: 8px 10px;
-    font-size: 12px;
+.actions button{
+    padding:8px 10px;
+    font-size:12px;
 }
 
-/* Empty */
-.empty {
-    text-align: center;
-    color: #888;
-    padding: 30px;
+.empty{
+    text-align:center;
+    color:#888;
+    padding:30px;
 }
 
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: #000b;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 10;
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#000b;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:10;
 }
 
-.modal.show {
-    display: flex;
+.modal.show{
+    display:flex;
 }
 
-.modalBox {
-    width: min(450px, 100%);
-    background: #15151b;
-    border: 1px solid #38204f;
-    border-radius: 22px;
-    padding: 20px;
+.modalBox{
+    width:min(450px,100%);
+    background:#15151b;
+    border:1px solid #38204f;
+    border-radius:22px;
+    padding:20px;
 }
 
-.modalBox h3 {
-    margin-top: 0;
+.modalBox h3{
+    margin-top:0;
 }
 
-label {
-    display: block;
-    color: #bbb;
-    font-size: 12px;
-    margin: 10px 0 5px;
+label{
+    display:block;
+    color:#bbb;
+    font-size:12px;
+    margin:10px 0 5px;
 }
 
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 11px;
-    border: 1px solid #34343e;
-    background: #0d0d11;
-    color: white;
-    font-family: inherit;
-    outline: none;
+input{
+    width:100%;
+    padding:12px;
+    border-radius:11px;
+    border:1px solid #34343e;
+    background:#0d0d11;
+    color:white;
+    font-family:inherit;
+    outline:none;
 }
 
-input:focus {
-    border-color: #7b2cff;
+input:focus{
+    border-color:#7b2cff;
 }
 
-.modalActions {
-    display: flex;
-    gap: 8px;
-    margin-top: 18px;
+.modalActions{
+    display:flex;
+    gap:8px;
+    margin-top:18px;
 }
 
-.modalActions button {
-    flex: 1;
+.modalActions button{
+    flex:1;
 }
 
-footer {
-    text-align: center;
-    color: #666;
-    font-size: 11px;
-    margin-top: 20px;
+footer{
+    text-align:center;
+    color:#666;
+    font-size:11px;
+    margin-top:20px;
 }
 
-/* Mobile */
-@media(max-width: 650px) {
+/* ================= MOBILE ================= */
 
-    .stats {
-        grid-template-columns: 1fr;
+@media(max-width:650px){
+
+    .stats{
+        grid-template-columns:1fr;
     }
 
-    .router {
-        height: 90px;
+    .router{
+        height:90px;
     }
 
     .router::before,
-    .router::after {
-        height: 65px;
-        top: -42px;
+    .router::after{
+        height:65px;
+        top:-42px;
     }
 
-    .device {
-        flex-wrap: wrap;
+    .device{
+        flex-wrap:wrap;
     }
 
-    .used {
-        margin-right: auto;
+    .used{
+        margin-right:auto;
     }
 
-    .actions {
-        width: 100%;
+    .actions{
+        width:100%;
     }
 
-    .actions button {
-        flex: 1;
+    .actions button{
+        flex:1;
     }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
@@ -405,11 +416,19 @@ footer {
         </div>
 
         <div>
-            <h1>لوحة تحكم الراوتر</h1>
-            <p>نظام تجريبي لإدارة استهلاك الإنترنت</p>
+
+            <h1>
+                لوحة تحكم الراوتر
+            </h1>
+
+            <p>
+                نظام تجريبي لإدارة استهلاك الإنترنت
+            </p>
+
         </div>
 
     </div>
+
 
     <div class="router">
 
@@ -431,7 +450,7 @@ footer {
 </header>
 
 
-<!-- الإحصائيات -->
+<!-- ================= الإحصائيات ================= -->
 
 <div class="stats">
 
@@ -442,7 +461,7 @@ footer {
         </small>
 
         <strong id="total">
-            200 GB
+            250 GB
         </strong>
 
     </div>
@@ -468,7 +487,7 @@ footer {
         </small>
 
         <strong id="remaining">
-            200 GB
+            250 GB
         </strong>
 
     </div>
@@ -476,7 +495,7 @@ footer {
 </div>
 
 
-<!-- نسبة الاستهلاك -->
+<!-- ================= نسبة الاستهلاك ================= -->
 
 <div class="card progressCard">
 
@@ -504,7 +523,7 @@ footer {
 </div>
 
 
-<!-- الأجهزة -->
+<!-- ================= الأجهزة ================= -->
 
 <div class="card">
 
@@ -520,6 +539,7 @@ footer {
 
     </div>
 
+
     <div
         id="devices"
         class="devices">
@@ -529,13 +549,15 @@ footer {
 
 
 <footer>
-    نظام تجريبي — البيانات تُحفظ محليًا على هذا الجهاز فقط
+
+    نظام تجريبي — البيانات تُحفظ على هذا الجهاز
+
 </footer>
 
 </div>
 
 
-<!-- نافذة الإضافة والتعديل -->
+<!-- ================= نافذة التعديل ================= -->
 
 <div
     class="modal"
@@ -554,7 +576,7 @@ footer {
 
         <input
             id="deviceName"
-            placeholder="مثال: موبايل Marwan">
+            placeholder="اسم الجهاز">
 
 
         <label>
@@ -566,7 +588,7 @@ footer {
             type="number"
             min="0"
             step="0.1"
-            placeholder="مثال: 12">
+            placeholder="مثال: 15">
 
 
         <div class="modalActions">
@@ -592,12 +614,24 @@ footer {
 
 <script>
 
-/* البيانات */
+/* ================= البيانات ================= */
 
-const KEY = "we_router_devices_v1";
+const KEY = "we_router_devices_v2";
 
-const TOTAL_KEY = "we_router_total_v1";
+const TOTAL_KEY = "we_router_total_v2";
 
+
+/*
+    إجمالي الباقة
+    250 جيجا
+*/
+
+let total = 250;
+
+
+/*
+    الأجهزة
+*/
 
 let devices =
     JSON.parse(
@@ -605,41 +639,63 @@ let devices =
     ) || [
 
         {
-            id: 1,
-            name: "موبايل Marwan",
-            usage: 12,
-            icon: "📱"
+            id:1,
+            name:"Redmi 12C",
+            usage:18,
+            icon:"📱"
         },
 
         {
-            id: 2,
-            name: "Laptop",
-            usage: 8,
-            icon: "💻"
+            id:2,
+            name:"Realme 6i",
+            usage:24,
+            icon:"📱"
         },
 
         {
-            id: 3,
-            name: "Smart TV",
-            usage: 5,
-            icon: "📺"
+            id:3,
+            name:"OPPO A15",
+            usage:15,
+            icon:"📱"
+        },
+
+        {
+            id:4,
+            name:"Redmi 15 5G",
+            usage:32,
+            icon:"📱"
+        },
+
+        {
+            id:5,
+            name:"Compaq Laptop",
+            usage:41,
+            icon:"💻"
+        },
+
+        {
+            id:6,
+            name:"Lenovo Tablet",
+            usage:20,
+            icon:"📱"
+        },
+
+        {
+            id:7,
+            name:"Redmi 5",
+            usage:12,
+            icon:"📱"
         }
 
     ];
 
 
-let total =
-    Number(
-        localStorage.getItem(TOTAL_KEY)
-    ) || 200;
-
-
 let editing = null;
 
 
-/* حفظ البيانات */
+/* ================= حفظ البيانات ================= */
 
-function save() {
+function save(){
 
     localStorage.setItem(
         KEY,
@@ -656,13 +712,13 @@ function save() {
 }
 
 
-/* تحديث الصفحة */
+/* ================= تحديث الشاشة ================= */
 
-function render() {
+function render(){
 
     let used =
         devices.reduce(
-            (sum, device) =>
+            (sum,device)=>
                 sum + Number(device.usage || 0),
             0
         );
@@ -711,7 +767,7 @@ function render() {
         document.getElementById("devices");
 
 
-    if (devices.length === 0) {
+    if(devices.length === 0){
 
         box.innerHTML =
             '<div class="empty">لا توجد أجهزة مضافة</div>';
@@ -727,7 +783,9 @@ function render() {
             <div class="device">
 
                 <div class="icon">
+
                     ${device.icon || "📱"}
+
                 </div>
 
 
@@ -785,37 +843,37 @@ function render() {
 }
 
 
-/* تنسيق الأرقام */
+/* ================= تنسيق الأرقام ================= */
 
-function fmt(number) {
+function fmt(number){
 
     return Number(number)
         .toLocaleString(
             "ar-EG",
             {
-                maximumFractionDigits: 1
+                maximumFractionDigits:1
             }
         );
 
 }
 
 
-/* حماية اسم الجهاز */
+/* ================= حماية النص ================= */
 
-function escapeHTML(text) {
+function escapeHTML(text){
 
     return String(text)
         .replace(
             /[&<>"']/g,
-            function(match) {
+            function(match){
 
                 const chars = {
 
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
+                    "&":"&amp;",
+                    "<":"&lt;",
+                    ">":"&gt;",
+                    '"':"&quot;",
+                    "'":"&#039;"
 
                 };
 
@@ -827,11 +885,12 @@ function escapeHTML(text) {
 }
 
 
-/* إضافة جهاز */
+/* ================= إضافة جهاز ================= */
 
-function openAdd() {
+function openAdd(){
 
     editing = null;
+
 
     document.getElementById("modalTitle")
         .textContent =
@@ -852,13 +911,14 @@ function openAdd() {
 }
 
 
-/* تعديل جهاز */
+/* ================= تعديل جهاز ================= */
 
-function editDevice(id) {
+function editDevice(id){
 
     let device =
         devices.find(
-            item => item.id === id
+            item =>
+                item.id === id
         );
 
 
@@ -886,9 +946,9 @@ function editDevice(id) {
 }
 
 
-/* إغلاق النافذة */
+/* ================= إغلاق النافذة ================= */
 
-function closeModal() {
+function closeModal(){
 
     document.getElementById("modal")
         .classList.remove("show");
@@ -896,28 +956,28 @@ function closeModal() {
 }
 
 
-/* حفظ الجهاز */
+/* ================= حفظ الجهاز ================= */
 
-function saveDevice() {
+function saveDevice(){
 
     let name =
         document.getElementById("deviceName")
-            .value
-            .trim();
+        .value
+        .trim();
 
 
     let usage =
         Number(
             document.getElementById("deviceUsage")
-                .value
+            .value
         );
 
 
-    if (
+    if(
         !name ||
         usage < 0 ||
         Number.isNaN(usage)
-    ) {
+    ){
 
         alert(
             "من فضلك أدخل البيانات بشكل صحيح"
@@ -928,11 +988,12 @@ function saveDevice() {
     }
 
 
-    if (editing) {
+    if(editing){
 
         let device =
             devices.find(
-                item => item.id === editing
+                item =>
+                    item.id === editing
             );
 
 
@@ -942,17 +1003,17 @@ function saveDevice() {
 
     }
 
-    else {
+    else{
 
         devices.push({
 
-            id: Date.now(),
+            id:Date.now(),
 
-            name: name,
+            name:name,
 
-            usage: usage,
+            usage:usage,
 
-            icon: pickIcon(name)
+            icon:pickIcon(name)
 
         });
 
@@ -966,40 +1027,32 @@ function saveDevice() {
 }
 
 
-/* اختيار أيقونة تلقائية */
+/* ================= أيقونة الجهاز ================= */
 
-function pickIcon(name) {
+function pickIcon(name){
 
     let n =
         name.toLowerCase();
 
 
-    if (
-        n.includes("tv") ||
-        n.includes("تلفزيون")
-    ) {
-
-        return "📺";
-
-    }
-
-
-    if (
+    if(
         n.includes("laptop") ||
-        n.includes("كمبيوتر")
-    ) {
+        n.includes("compaq") ||
+        n.includes("لاب")
+    ){
 
         return "💻";
 
     }
 
 
-    if (
-        n.includes("play") ||
-        n.includes("بلاي")
-    ) {
+    if(
+        n.includes("tablet") ||
+        n.includes("تابلت") ||
+        n.includes("lenovo")
+    ){
 
-        return "🎮";
+        return "📱";
 
     }
 
@@ -1009,21 +1062,22 @@ function pickIcon(name) {
 }
 
 
-/* حذف جهاز */
+/* ================= حذف جهاز ================= */
 
-function removeDevice(id) {
+function removeDevice(id){
 
-    if (
+    if(
         confirm(
             "هل تريد حذف هذا الجهاز؟"
         )
-    ) {
+    ){
 
         devices =
             devices.filter(
                 device =>
                     device.id !== id
             );
+
 
         save();
 
@@ -1032,17 +1086,17 @@ function removeDevice(id) {
 }
 
 
-/* الضغط خارج النافذة */
+/* ================= إغلاق النافذة بالضغط خارجها ================= */
 
 document
     .getElementById("modal")
     .addEventListener(
         "click",
-        function(event) {
+        function(event){
 
-            if (
+            if(
                 event.target.id === "modal"
-            ) {
+            ){
 
                 closeModal();
 
@@ -1052,7 +1106,7 @@ document
     );
 
 
-/* تشغيل الموقع */
+/* ================= تشغيل الموقع ================= */
 
 render();
 
