@@ -2,11 +2,8 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>WE Router Dashboard</title>
 
@@ -45,7 +42,6 @@ header{
     border-radius:24px;
     padding:22px;
     margin-bottom:18px;
-    overflow:hidden;
 }
 
 .brand{
@@ -165,7 +161,7 @@ header p{
     color:#a45cff;
 }
 
-/* البار */
+/* الباقة */
 
 .progressCard{
     margin-bottom:15px;
@@ -199,6 +195,7 @@ header p{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:10px;
     margin-bottom:12px;
 }
 
@@ -254,15 +251,18 @@ button.danger{
     display:grid;
     place-items:center;
     font-size:20px;
+    flex-shrink:0;
 }
 
 .deviceInfo{
     flex:1;
+    min-width:0;
 }
 
 .deviceInfo b{
     display:block;
     font-size:14px;
+    word-break:break-word;
 }
 
 .deviceInfo span{
@@ -363,7 +363,7 @@ input:focus{
     flex:1;
 }
 
-/* الباسورد */
+/* شاشة كلمة المرور */
 
 .passwordBox{
     width:min(380px,100%);
@@ -445,6 +445,22 @@ footer{
     margin-top:20px;
 }
 
+.loading{
+    text-align:center;
+    padding:25px;
+    color:#999;
+}
+
+.errorBox{
+    background:#35151a;
+    border:1px solid #68252d;
+    color:#ffb8be;
+    border-radius:15px;
+    padding:15px;
+    line-height:1.8;
+    font-size:13px;
+}
+
 @media(max-width:650px){
 
     .stats{
@@ -477,11 +493,16 @@ footer{
         flex:1;
     }
 
+    .sectionTitle{
+        align-items:flex-start;
+    }
+
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -540,7 +561,7 @@ footer{
             إجمالي الباقة
         </small>
 
-        <strong id="total">
+        <strong>
             250 GB
         </strong>
 
@@ -581,7 +602,7 @@ footer{
 </div>
 
 
-<!-- الاستهلاك -->
+<!-- نسبة الاستهلاك -->
 
 <div class="card progressCard">
 
@@ -597,7 +618,6 @@ footer{
 
     </div>
 
-
     <div class="bar">
 
         <div
@@ -610,7 +630,7 @@ footer{
 </div>
 
 
-<!-- الأجهزة -->
+<!-- قائمة الأجهزة -->
 
 <div class="card">
 
@@ -621,9 +641,7 @@ footer{
         </h2>
 
         <button onclick="openAdd()">
-
             + إضافة جهاز
-
         </button>
 
     </div>
@@ -632,21 +650,26 @@ footer{
     <div
         id="devices"
         class="devices">
+
+        <div class="loading">
+            جاري تحميل الأجهزة...
+        </div>
+
     </div>
 
 </div>
 
 
 <footer>
-
-    نظام تجريبي — البيانات محفوظة على Firebase
-
+    البيانات محفوظة على Firebase وتظهر على جميع الأجهزة
 </footer>
 
 </div>
 
 
-<!-- نافذة الجهاز -->
+<!-- ==================================================
+     نافذة إضافة / تعديل جهاز
+================================================== -->
 
 <div
     class="modal"
@@ -657,6 +680,7 @@ footer{
         <h3 id="modalTitle">
             إضافة جهاز
         </h3>
+
 
         <label>
             اسم الجهاز
@@ -702,7 +726,9 @@ footer{
 </div>
 
 
-<!-- باسورد الإدارة -->
+<!-- ==================================================
+     شاشة كلمة المرور
+================================================== -->
 
 <div
     class="modal"
@@ -784,9 +810,11 @@ footer{
 </div>
 
 
-<!-- Firebase -->
-
 <script type="module">
+
+/* ==================================================
+   FIREBASE
+================================================== */
 
 import {
     initializeApp
@@ -798,6 +826,7 @@ from
 import {
     getDatabase,
     ref,
+    get,
     set,
     onValue
 }
@@ -806,7 +835,7 @@ from
 
 
 /* ==================================================
-   بيانات مشروع Firebase الخاص بك
+   بيانات Firebase الخاصة بك
 ================================================== */
 
 const firebaseConfig = {
@@ -816,11 +845,6 @@ const firebaseConfig = {
 
     authDomain:
         "my-we-7be7c.firebaseapp.com",
-
-    /*
-       لو Firebase أعطاك Database URL مختلف،
-       استبدله هنا.
-    */
 
     databaseURL:
         "https://my-we-7be7c-default-rtdb.firebaseio.com",
@@ -852,7 +876,10 @@ const database =
     getDatabase(app);
 
 
-/* مكان تخزين الأجهزة */
+/*
+   البيانات كلها ستكون داخل:
+   router/devices
+*/
 
 const devicesRef =
     ref(
@@ -861,104 +888,184 @@ const devicesRef =
     );
 
 
-/* كلمة المرور */
+/* ==================================================
+   إعدادات النظام
+================================================== */
 
-const ADMIN_PASSWORD =
-    "2009";
+const ADMIN_PASSWORD = "2009";
 
-
-/* إجمالي الباقة */
-
-const TOTAL_PACKAGE =
-    250;
-
-
-/* الأجهزة */
-
-let devices = [];
-
-
-/* حالة التعديل */
-
-let editing = null;
-
-
-/* الباسورد */
-
-let passwordInput = "";
-
-
-/* العملية المطلوبة */
-
-let pendingAction = null;
-
-
-/* رقم الجهاز المطلوب */
-
-let pendingId = null;
+const TOTAL_PACKAGE = 250;
 
 
 /* ==================================================
-   الأجهزة الافتراضية
+   الأجهزة الأساسية المطلوبة
 ================================================== */
 
 const defaultDevices = [
 
     {
-        id:1,
-        name:"Redmi 12C",
-        usage:18,
-        icon:"📱"
+        id: "redmi12c",
+        name: "Redmi 12C",
+        usage: 18,
+        icon: "📱"
     },
 
     {
-        id:2,
-        name:"Realme 6i",
-        usage:24,
-        icon:"📱"
+        id: "realme6i",
+        name: "Realme 6i",
+        usage: 24,
+        icon: "📱"
     },
 
     {
-        id:3,
-        name:"OPPO A15",
-        usage:15,
-        icon:"📱"
+        id: "oppoa15",
+        name: "OPPO A15",
+        usage: 15,
+        icon: "📱"
     },
 
     {
-        id:4,
-        name:"Redmi 15 5G",
-        usage:32,
-        icon:"📱"
+        id: "redmi155g",
+        name: "Redmi 15 5G",
+        usage: 32,
+        icon: "📱"
     },
 
     {
-        id:5,
-        name:"Compaq Laptop",
-        usage:41,
-        icon:"💻"
+        id: "compaq",
+        name: "Compaq Laptop",
+        usage: 41,
+        icon: "💻"
     },
 
     {
-        id:6,
-        name:"Lenovo Tablet",
-        usage:20,
-        icon:"📱"
+        id: "lenovo",
+        name: "Lenovo Tablet",
+        usage: 20,
+        icon: "📱"
     },
 
     {
-        id:7,
-        name:"Redmi 5",
-        usage:12,
-        icon:"📱"
+        id: "redmi5",
+        name: "Redmi 5",
+        usage: 12,
+        icon: "📱"
     }
 
 ];
 
 
 /* ==================================================
-   استقبال البيانات لحظيًا
+   متغيرات
 ================================================== */
+
+let devices = [];
+
+let editing = null;
+
+let passwordInput = "";
+
+let pendingAction = null;
+
+let pendingId = null;
+
+
+/* ==================================================
+   تحميل البيانات من Firebase
+================================================== */
+
+/*
+   مهم جدًا:
+
+   لا نستخدم set() مباشرة عند فتح الموقع.
+
+   أولًا نقرأ Firebase.
+
+   لو البيانات موجودة:
+       نستخدمها كما هي.
+
+   لو Firebase فاضي لأول مرة:
+       نضع الأجهزة الأساسية مرة واحدة فقط.
+
+   بهذا الشكل Refresh / Restart
+   لن يحذف الأجهزة ولن يرجعها للقيم القديمة.
+*/
+
+async function loadInitialData(){
+
+    try{
+
+        const snapshot =
+            await get(
+                devicesRef
+            );
+
+
+        if(
+            snapshot.exists()
+        ){
+
+            const data =
+                snapshot.val();
+
+
+            devices =
+                normalizeData(
+                    data
+                );
+
+
+            render();
+
+            return;
+
+        }
+
+
+        /*
+           قاعدة البيانات فاضية تمامًا.
+           هنا فقط نضيف الأجهزة الأساسية.
+        */
+
+        devices =
+            [...defaultDevices];
+
+
+        await set(
+            devicesRef,
+            devices
+        );
+
+
+        render();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Firebase error:",
+            error
+        );
+
+
+        showFirebaseError(
+            error
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   متابعة Firebase لحظيًا
+================================================== */
+
+/*
+   أي تغيير يحصل من موبايل أو جهاز آخر
+   سيظهر هنا تلقائيًا.
+*/
 
 onValue(
 
@@ -966,44 +1073,31 @@ onValue(
 
     (snapshot) => {
 
-        const data =
-            snapshot.val();
-
-
         /*
-           أول مرة فقط:
-           لو مفيش بيانات في Firebase
+           لو البيانات غير موجودة،
+           لا نعمل Reset.
+
+           loadInitialData()
+           هي المسؤولة عن أول إنشاء فقط.
         */
 
-        if(data === null){
-
-            devices =
-                defaultDevices;
-
-
-            set(
-                devicesRef,
-                devices
-            );
+        if(
+            !snapshot.exists()
+        ){
 
             return;
 
         }
 
 
-        if(Array.isArray(data)){
+        const data =
+            snapshot.val();
 
-            devices =
-                data;
 
-        }
-
-        else{
-
-            devices =
-                Object.values(data);
-
-        }
+        devices =
+            normalizeData(
+                data
+            );
 
 
         render();
@@ -1012,15 +1106,49 @@ onValue(
 
     (error) => {
 
-        console.error(error);
-
-        alert(
-            "خطأ في الاتصال بـ Firebase. تأكد من تفعيل Realtime Database."
+        console.error(
+            error
         );
 
     }
 
 );
+
+
+/* ==================================================
+   تحويل بيانات Firebase إلى Array
+================================================== */
+
+function normalizeData(data){
+
+    if(
+        Array.isArray(data)
+    ){
+
+        return data.filter(
+            item =>
+                item &&
+                item.id !== undefined
+        );
+
+    }
+
+
+    if(
+        data &&
+        typeof data === "object"
+    ){
+
+        return Object.values(
+            data
+        );
+
+    }
+
+
+    return [];
+
+}
 
 
 /* ==================================================
@@ -1031,6 +1159,11 @@ async function saveData(){
 
     try{
 
+        /*
+           نحفظ النسخة الحالية فقط.
+           لا توجد أي عملية Reset.
+        */
+
         await set(
             devicesRef,
             devices
@@ -1040,10 +1173,12 @@ async function saveData(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
-            "تعذر حفظ البيانات."
+            "لم يتم حفظ التعديل. تأكد من اتصال الإنترنت وFirebase."
         );
 
     }
@@ -1074,27 +1209,18 @@ function render(){
         );
 
 
-    let remaining =
+    const remaining =
         Math.max(
             TOTAL_PACKAGE - used,
             0
         );
 
 
-    let percent =
+    const percent =
         Math.min(
             (used / TOTAL_PACKAGE) * 100,
             100
         );
-
-
-    document
-    .getElementById("total")
-    .textContent =
-        formatNumber(
-            TOTAL_PACKAGE
-        ) +
-        " GB";
 
 
     document
@@ -1118,7 +1244,9 @@ function render(){
     document
     .getElementById("percent")
     .textContent =
-        Math.round(percent) +
+        Math.round(
+            percent
+        ) +
         "%";
 
 
@@ -1134,12 +1262,14 @@ function render(){
         .getElementById("devices");
 
 
-    if(devices.length === 0){
+    if(
+        devices.length === 0
+    ){
 
         box.innerHTML = `
 
             <div class="empty">
-                لا توجد أجهزة مضافة
+                لا توجد أجهزة حاليًا
             </div>
 
         `;
@@ -1151,93 +1281,98 @@ function render(){
 
     box.innerHTML =
 
-        devices.map(
+        devices
+        .map(
             device => `
 
-                <div class="device">
+            <div class="device">
 
-                    <div class="icon">
-
-                        ${device.icon || "📱"}
-
-                    </div>
+                <div class="icon">
+                    ${device.icon || "📱"}
+                </div>
 
 
-                    <div class="deviceInfo">
+                <div class="deviceInfo">
 
-                        <b>
+                    <b>
+                        ${escapeHTML(
+                            device.name
+                        )}
+                    </b>
 
-                            ${escapeHTML(
-                                device.name
-                            )}
-
-                        </b>
-
-                        <span>
-                            استهلاك الجهاز
-                        </span>
-
-                    </div>
-
-
-                    <div class="used">
-
-                        <b>
-
-                            ${formatNumber(
-                                device.usage
-                            )}
-
-                            GB
-
-                        </b>
-
-                        <span>
-                            مستخدم
-                        </span>
-
-                    </div>
-
-
-                    <div class="actions">
-
-                        <button
-                            class="secondary"
-                            onclick="
-                                editDevice(
-                                    ${device.id}
-                                )
-                            ">
-
-                            تعديل
-
-                        </button>
-
-
-                        <button
-                            class="danger"
-                            onclick="
-                                removeDevice(
-                                    ${device.id}
-                                )
-                            ">
-
-                            حذف
-
-                        </button>
-
-                    </div>
+                    <span>
+                        استهلاك الجهاز
+                    </span>
 
                 </div>
 
-            `
-        ).join("");
+
+                <div class="used">
+
+                    <b>
+                        ${formatNumber(
+                            device.usage
+                        )}
+                        GB
+                    </b>
+
+                    <span>
+                        مستخدم
+                    </span>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        class="secondary"
+                        onclick="
+                            editDevice(
+                                '${String(
+                                    device.id
+                                ).replace(
+                                    /'/g,
+                                    "\\'"
+                                )}'
+                            )
+                        ">
+
+                        تعديل
+
+                    </button>
+
+
+                    <button
+                        class="danger"
+                        onclick="
+                            removeDevice(
+                                '${String(
+                                    device.id
+                                ).replace(
+                                    /'/g,
+                                    "\\'"
+                                )}'
+                            )
+                        ">
+
+                        حذف
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `
+        )
+        .join("");
 
 }
 
 
 /* ==================================================
-   تنسيق الرقم
+   تنسيق الأرقام
 ================================================== */
 
 function formatNumber(number){
@@ -1254,7 +1389,7 @@ function formatNumber(number){
 
 
 /* ==================================================
-   حماية HTML
+   حماية النص
 ================================================== */
 
 function escapeHTML(text){
@@ -1283,7 +1418,7 @@ function escapeHTML(text){
 
 
 /* ==================================================
-   إضافة
+   طلب إضافة جهاز
 ================================================== */
 
 window.openAdd =
@@ -1297,7 +1432,7 @@ function(){
 
 
 /* ==================================================
-   نموذج الإضافة
+   فتح نموذج الإضافة
 ================================================== */
 
 function openAddForm(){
@@ -1306,31 +1441,23 @@ function openAddForm(){
 
 
     document
-    .getElementById(
-        "modalTitle"
-    )
+    .getElementById("modalTitle")
     .textContent =
         "إضافة جهاز";
 
 
     document
-    .getElementById(
-        "deviceName"
-    )
+    .getElementById("deviceName")
     .value = "";
 
 
     document
-    .getElementById(
-        "deviceUsage"
-    )
+    .getElementById("deviceUsage")
     .value = "";
 
 
     document
-    .getElementById(
-        "modal"
-    )
+    .getElementById("modal")
     .classList.add(
         "show"
     );
@@ -1354,7 +1481,7 @@ function(id){
 
 
 /* ==================================================
-   نموذج التعديل
+   فتح نموذج التعديل
 ================================================== */
 
 function openEditForm(id){
@@ -1362,48 +1489,46 @@ function openEditForm(id){
     const device =
         devices.find(
             item =>
-                Number(item.id) ===
-                Number(id)
+                String(item.id) ===
+                String(id)
         );
 
 
     if(!device){
+
+        alert(
+            "الجهاز غير موجود"
+        );
+
         return;
+
     }
 
 
     editing =
-        Number(id);
+        id;
 
 
     document
-    .getElementById(
-        "modalTitle"
-    )
+    .getElementById("modalTitle")
     .textContent =
         "تعديل الجهاز";
 
 
     document
-    .getElementById(
-        "deviceName"
-    )
+    .getElementById("deviceName")
     .value =
         device.name;
 
 
     document
-    .getElementById(
-        "deviceUsage"
-    )
+    .getElementById("deviceUsage")
     .value =
         device.usage;
 
 
     document
-    .getElementById(
-        "modal"
-    )
+    .getElementById("modal")
     .classList.add(
         "show"
     );
@@ -1432,13 +1557,26 @@ function(id){
 
 async function deleteDevice(id){
 
+    const exists =
+        devices.some(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if(!exists){
+
+        return;
+
+    }
+
+
     devices =
         devices.filter(
-
-            device =>
-                Number(device.id) !==
-                Number(id)
-
+            item =>
+                String(item.id) !==
+                String(id)
         );
 
 
@@ -1448,7 +1586,7 @@ async function deleteDevice(id){
 
 
 /* ==================================================
-   حفظ جهاز
+   حفظ الإضافة أو التعديل
 ================================================== */
 
 window.saveDevice =
@@ -1456,9 +1594,7 @@ async function(){
 
     const name =
         document
-        .getElementById(
-            "deviceName"
-        )
+        .getElementById("deviceName")
         .value
         .trim();
 
@@ -1466,9 +1602,7 @@ async function(){
     const usage =
         Number(
             document
-            .getElementById(
-                "deviceUsage"
-            )
+            .getElementById("deviceUsage")
             .value
         );
 
@@ -1480,7 +1614,7 @@ async function(){
     ){
 
         alert(
-            "من فضلك أدخل البيانات بشكل صحيح."
+            "من فضلك أدخل اسم الجهاز والاستهلاك بشكل صحيح."
         );
 
         return;
@@ -1488,13 +1622,17 @@ async function(){
     }
 
 
-    if(editing !== null){
+    /* تعديل */
+
+    if(
+        editing !== null
+    ){
 
         const device =
             devices.find(
                 item =>
-                    Number(item.id) ===
-                    Number(editing)
+                    String(item.id) ===
+                    String(editing)
             );
 
 
@@ -1515,11 +1653,15 @@ async function(){
 
     }
 
+
+    /* إضافة */
+
     else{
 
         devices.push({
 
             id:
+                "device_" +
                 Date.now(),
 
             name:
@@ -1540,13 +1682,14 @@ async function(){
 
     closeModal();
 
+
     await saveData();
 
 };
 
 
 /* ==================================================
-   تحديد الأيقونة
+   أيقونة الجهاز
 ================================================== */
 
 function getDeviceIcon(name){
@@ -1583,16 +1726,14 @@ function getDeviceIcon(name){
 
 
 /* ==================================================
-   إغلاق نافذة الجهاز
+   إغلاق نموذج الجهاز
 ================================================== */
 
 window.closeModal =
 function(){
 
     document
-    .getElementById(
-        "modal"
-    )
+    .getElementById("modal")
     .classList.remove(
         "show"
     );
@@ -1601,7 +1742,7 @@ function(){
 
 
 /* ==================================================
-   فتح الباسورد
+   كلمة المرور
 ================================================== */
 
 function askPassword(
@@ -1620,9 +1761,7 @@ function askPassword(
 
 
     document
-    .getElementById(
-        "passwordError"
-    )
+    .getElementById("passwordError")
     .textContent =
         "";
 
@@ -1631,9 +1770,7 @@ function askPassword(
 
 
     document
-    .getElementById(
-        "passwordModal"
-    )
+    .getElementById("passwordModal")
     .classList.add(
         "show"
     );
@@ -1642,7 +1779,7 @@ function askPassword(
 
 
 /* ==================================================
-   أرقام الباسورد
+   ضغط رقم
 ================================================== */
 
 window.pressKey =
@@ -1651,7 +1788,9 @@ function(number){
     if(
         passwordInput.length >= 4
     ){
+
         return;
+
     }
 
 
@@ -1677,7 +1816,7 @@ function(number){
 
 
 /* ==================================================
-   نقاط الباسورد
+   عرض الباسورد
 ================================================== */
 
 function updatePasswordDots(){
@@ -1700,9 +1839,7 @@ function updatePasswordDots(){
 
 
     document
-    .getElementById(
-        "passwordDots"
-    )
+    .getElementById("passwordDots")
     .textContent =
         result;
 
@@ -1710,7 +1847,7 @@ function updatePasswordDots(){
 
 
 /* ==================================================
-   حذف رقم
+   حذف آخر رقم
 ================================================== */
 
 window.backspace =
@@ -1724,9 +1861,7 @@ function(){
 
 
     document
-    .getElementById(
-        "passwordError"
-    )
+    .getElementById("passwordError")
     .textContent =
         "";
 
@@ -1737,7 +1872,7 @@ function(){
 
 
 /* ==================================================
-   مسح
+   مسح الباسورد
 ================================================== */
 
 window.clearPassword =
@@ -1748,9 +1883,7 @@ function(){
 
 
     document
-    .getElementById(
-        "passwordError"
-    )
+    .getElementById("passwordError")
     .textContent =
         "";
 
@@ -1780,9 +1913,7 @@ function checkPassword(){
     else{
 
         document
-        .getElementById(
-            "passwordError"
-        )
+        .getElementById("passwordError")
         .textContent =
             "❌ كلمة المرور غير صحيحة";
 
@@ -1799,7 +1930,7 @@ function checkPassword(){
 
 
 /* ==================================================
-   تنفيذ العملية بعد الباسورد
+   تنفيذ العملية
 ================================================== */
 
 function executePendingAction(){
@@ -1813,6 +1944,7 @@ function executePendingAction(){
 
     }
 
+
     else if(
         pendingAction ===
         "edit"
@@ -1823,6 +1955,7 @@ function executePendingAction(){
         );
 
     }
+
 
     else if(
         pendingAction ===
@@ -1846,16 +1979,14 @@ function executePendingAction(){
 
 
 /* ==================================================
-   إغلاق الباسورد
+   إغلاق شاشة الباسورد
 ================================================== */
 
 window.closePassword =
 function(){
 
     document
-    .getElementById(
-        "passwordModal"
-    )
+    .getElementById("passwordModal")
     .classList.remove(
         "show"
     );
@@ -1865,13 +1996,60 @@ function(){
         "";
 
 
+    pendingAction =
+        null;
+
+    pendingId =
+        null;
+
+
     updatePasswordDots();
 
 };
 
 
 /* ==================================================
-   إغلاق بالنقر خارج النافذة
+   عرض خطأ Firebase
+================================================== */
+
+function showFirebaseError(error){
+
+    const box =
+        document
+        .getElementById("devices");
+
+
+    box.innerHTML = `
+
+        <div class="errorBox">
+
+            ❌ حصلت مشكلة في الاتصال بقاعدة البيانات.
+
+            <br><br>
+
+            تأكد من:
+
+            <br>
+
+            1. تفعيل Realtime Database.
+
+            <br>
+
+            2. أن Database URL صحيح.
+
+            <br>
+
+            3. أن قواعد Firebase تسمح بالقراءة والكتابة.
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   إغلاق النوافذ عند الضغط خارجها
 ================================================== */
 
 document
@@ -1911,8 +2089,15 @@ document
     }
 );
 
+
+/* ==================================================
+   بدء تشغيل الموقع
+================================================== */
+
+loadInitialData();
+
 </script>
 
 </body>
 
-   </html>
+    </html>
