@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WE Router Dashboard</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Cairo, Arial, sans-serif;
+    background: #08080b;
+    color: #fff;
+}
+
+:root {
+    --purple: #7b2cff;
+    --purple2: #a45cff;
+    --card: #15151b;
+    --muted: #aaa;
+}
+
+.container {
+    width: min(1050px, 94%);
+    margin: auto;
+    padding: 18px 0 40px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #0d0d12, #211034);
+    border: 1px solid #2e1b47;
+    border-radius: 24px;
+    padding: 22px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 17px;
+    background: linear-gradient(135deg, var(--purple), #4a00c8);
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    font-weight: 800;
+    box-shadow: 0 10px 30px #7b2cff55;
+}
+
+h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+header p {
+    margin: 3px 0 0;
+    color: #bbb;
+    font-size: 13px;
+}
+
+/* Router */
+.router {
+    height: 110px;
+    background: linear-gradient(180deg, #eee, #bfc1c8);
+    border-radius: 25px;
+    margin: 70px auto 10px;
+    position: relative;
+    box-shadow: 0 15px 35px #0008;
+    max-width: 650px;
+}
+
+.router::before,
+.router::after {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 90px;
+    background: #777;
+    border-radius: 8px;
+    top: -54px;
+}
+
+.router::before {
+    right: 18%;
+}
+
+.router::after {
+    left: 18%;
+}
+
+.router .lights {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.light {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #6f2cff;
+    box-shadow: 0 0 12px #7b2cff;
+}
+
+.router .name {
+    position: absolute;
+    right: 28px;
+    top: 35px;
+    color: #333;
+    font-weight: 800;
+}
+
+/* Statistics */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid #292932;
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.stat small {
+    color: var(--muted);
+    display: block;
+    font-size: 12px;
+}
+
+.stat strong {
+    font-size: 25px;
+    display: block;
+    margin-top: 4px;
+}
+
+.purple {
+    color: #a45cff;
+}
+
+/* Progress */
+.progressCard {
+    margin-bottom: 15px;
+}
+
+.progressTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bar {
+    height: 13px;
+    background: #292932;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #6d18ff, #b06cff);
+    border-radius: 20px;
+    transition: .3s;
+}
+
+/* Devices */
+.sectionTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.sectionTitle h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+button {
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(135deg, var(--purple), #4d0fc9);
+}
+
+button.secondary {
+    background: #24242c;
+}
+
+button.danger {
+    background: #4b1820;
+    color: #ffb7bf;
+}
+
+.devices {
+    display: grid;
+    gap: 10px;
+}
+
+.device {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    background: var(--card);
+    border: 1px solid #292932;
+    border-radius: 16px;
+    padding: 13px;
+}
+
+.icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: #261343;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+}
+
+.deviceInfo {
+    flex: 1;
+}
+
+.deviceInfo b {
+    display: block;
+    font-size: 14px;
+}
+
+.deviceInfo span {
+    font-size: 11px;
+    color: #999;
+}
+
+.used {
+    text-align: left;
+    min-width: 75px;
+}
+
+.used b {
+    display: block;
+    color: #b16bff;
+}
+
+.used span {
+    font-size: 10px;
+    color: #888;
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+.actions button {
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
+/* Empty */
+.empty {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000b;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modalBox {
+    width: min(450px, 100%);
+    background: #15151b;
+    border: 1px solid #38204f;
+    border-radius: 22px;
+    padding: 20px;
+}
+
+.modalBox h3 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    color: #bbb;
+    font-size: 12px;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 11px;
+    border: 1px solid #34343e;
+    background: #0d0d11;
+    color: white;
+    font-family: inherit;
+    outline: none;
+}
+
+input:focus {
+    border-color: #7b2cff;
+}
+
+.modalActions {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.modalActions button {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    color: #666;
+    font-size: 11px;
+    margin-top: 20px;
+}
+
+/* Mobile */
+@media(max-width: 650px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .router {
+        height: 90px;
+    }
+
+    .router::before,
+    .router::after {
+        height: 65px;
+        top: -42px;
+    }
+
+    .device {
+        flex-wrap: wrap;
+    }
+
+    .used {
+        margin-right: auto;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .actions button {
+        flex: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            WE
+        </div>
+
+        <div>
+            <h1>لوحة تحكم الراوتر</h1>
+            <p>نظام تجريبي لإدارة استهلاك الإنترنت</p>
+        </div>
+
+    </div>
+
+    <div class="router">
+
+        <div class="name">
+            HOME ROUTER
+        </div>
+
+        <div class="lights">
+
+            <i class="light"></i>
+            <i class="light"></i>
+            <i class="light"></i>
+            <i class="light"></i>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- الإحصائيات -->
+
+<div class="stats">
+
+    <div class="card stat">
+
+        <small>
+            إجمالي الباقة
+        </small>
+
+        <strong id="total">
+            200 GB
+        </strong>
+
+    </div>
+
+
+    <div class="card stat">
+
+        <small>
+            المستخدم
+        </small>
+
+        <strong class="purple" id="used">
+            0 GB
+        </strong>
+
+    </div>
+
+
+    <div class="card stat">
+
+        <small>
+            المتبقي
+        </small>
+
+        <strong id="remaining">
+            200 GB
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- نسبة الاستهلاك -->
+
+<div class="card progressCard">
+
+    <div class="progressTop">
+
+        <b>
+            استهلاك الباقة
+        </b>
+
+        <span id="percent">
+            0%
+        </span>
+
+    </div>
+
+    <div class="bar">
+
+        <div
+            class="fill"
+            id="fill">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- الأجهزة -->
+
+<div class="card">
+
+    <div class="sectionTitle">
+
+        <h2>
+            📱 الأجهزة المتصلة
+        </h2>
+
+        <button onclick="openAdd()">
+            + إضافة جهاز
+        </button>
+
+    </div>
+
+    <div
+        id="devices"
+        class="devices">
+    </div>
+
+</div>
+
+
+<footer>
+    نظام تجريبي — البيانات تُحفظ محليًا على هذا الجهاز فقط
+</footer>
+
+</div>
+
+
+<!-- نافذة الإضافة والتعديل -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modalBox">
+
+        <h3 id="modalTitle">
+            إضافة جهاز
+        </h3>
+
+
+        <label>
+            اسم الجهاز
+        </label>
+
+        <input
+            id="deviceName"
+            placeholder="مثال: موبايل Marwan">
+
+
+        <label>
+            الاستهلاك بالجيجابايت
+        </label>
+
+        <input
+            id="deviceUsage"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="مثال: 12">
+
+
+        <div class="modalActions">
+
+            <button onclick="saveDevice()">
+                حفظ
+            </button>
+
+            <button
+                class="secondary"
+                onclick="closeModal()">
+
+                إلغاء
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* البيانات */
+
+const KEY = "we_router_devices_v1";
+
+const TOTAL_KEY = "we_router_total_v1";
+
+
+let devices =
+    JSON.parse(
+        localStorage.getItem(KEY) || "null"
+    ) || [
+
+        {
+            id: 1,
+            name: "موبايل Marwan",
+            usage: 12,
+            icon: "📱"
+        },
+
+        {
+            id: 2,
+            name: "Laptop",
+            usage: 8,
+            icon: "💻"
+        },
+
+        {
+            id: 3,
+            name: "Smart TV",
+            usage: 5,
+            icon: "📺"
+        }
+
+    ];
+
+
+let total =
+    Number(
+        localStorage.getItem(TOTAL_KEY)
+    ) || 200;
+
+
+let editing = null;
+
+
+/* حفظ البيانات */
+
+function save() {
+
+    localStorage.setItem(
+        KEY,
+        JSON.stringify(devices)
+    );
+
+    localStorage.setItem(
+        TOTAL_KEY,
+        total
+    );
+
+    render();
+
+}
+
+
+/* تحديث الصفحة */
+
+function render() {
+
+    let used =
+        devices.reduce(
+            (sum, device) =>
+                sum + Number(device.usage || 0),
+            0
+        );
+
+
+    let remaining =
+        Math.max(
+            total - used,
+            0
+        );
+
+
+    let percent =
+        Math.min(
+            (used / total) * 100,
+            100
+        );
+
+
+    document.getElementById("total")
+        .textContent =
+        fmt(total) + " GB";
+
+
+    document.getElementById("used")
+        .textContent =
+        fmt(used) + " GB";
+
+
+    document.getElementById("remaining")
+        .textContent =
+        fmt(remaining) + " GB";
+
+
+    document.getElementById("percent")
+        .textContent =
+        Math.round(percent) + "%";
+
+
+    document.getElementById("fill")
+        .style.width =
+        percent + "%";
+
+
+    const box =
+        document.getElementById("devices");
+
+
+    if (devices.length === 0) {
+
+        box.innerHTML =
+            '<div class="empty">لا توجد أجهزة مضافة</div>';
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        devices.map(device => `
+
+            <div class="device">
+
+                <div class="icon">
+                    ${device.icon || "📱"}
+                </div>
+
+
+                <div class="deviceInfo">
+
+                    <b>
+                        ${escapeHTML(device.name)}
+                    </b>
+
+                    <span>
+                        استهلاك الجهاز
+                    </span>
+
+                </div>
+
+
+                <div class="used">
+
+                    <b>
+                        ${fmt(device.usage)} GB
+                    </b>
+
+                    <span>
+                        مستخدم
+                    </span>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        class="secondary"
+                        onclick="editDevice(${device.id})">
+
+                        تعديل
+
+                    </button>
+
+
+                    <button
+                        class="danger"
+                        onclick="removeDevice(${device.id})">
+
+                        حذف
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* تنسيق الأرقام */
+
+function fmt(number) {
+
+    return Number(number)
+        .toLocaleString(
+            "ar-EG",
+            {
+                maximumFractionDigits: 1
+            }
+        );
+
+}
+
+
+/* حماية اسم الجهاز */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(
+            /[&<>"']/g,
+            function(match) {
+
+                const chars = {
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+
+                };
+
+                return chars[match];
+
+            }
+        );
+
+}
+
+
+/* إضافة جهاز */
+
+function openAdd() {
+
+    editing = null;
+
+    document.getElementById("modalTitle")
+        .textContent =
+        "إضافة جهاز";
+
+
+    document.getElementById("deviceName")
+        .value = "";
+
+
+    document.getElementById("deviceUsage")
+        .value = "";
+
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+/* تعديل جهاز */
+
+function editDevice(id) {
+
+    let device =
+        devices.find(
+            item => item.id === id
+        );
+
+
+    editing = id;
+
+
+    document.getElementById("modalTitle")
+        .textContent =
+        "تعديل الجهاز";
+
+
+    document.getElementById("deviceName")
+        .value =
+        device.name;
+
+
+    document.getElementById("deviceUsage")
+        .value =
+        device.usage;
+
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+/* إغلاق النافذة */
+
+function closeModal() {
+
+    document.getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+/* حفظ الجهاز */
+
+function saveDevice() {
+
+    let name =
+        document.getElementById("deviceName")
+            .value
+            .trim();
+
+
+    let usage =
+        Number(
+            document.getElementById("deviceUsage")
+                .value
+        );
+
+
+    if (
+        !name ||
+        usage < 0 ||
+        Number.isNaN(usage)
+    ) {
+
+        alert(
+            "من فضلك أدخل البيانات بشكل صحيح"
+        );
+
+        return;
+
+    }
+
+
+    if (editing) {
+
+        let device =
+            devices.find(
+                item => item.id === editing
+            );
+
+
+        device.name = name;
+
+        device.usage = usage;
+
+    }
+
+    else {
+
+        devices.push({
+
+            id: Date.now(),
+
+            name: name,
+
+            usage: usage,
+
+            icon: pickIcon(name)
+
+        });
+
+    }
+
+
+    closeModal();
+
+    save();
+
+}
+
+
+/* اختيار أيقونة تلقائية */
+
+function pickIcon(name) {
+
+    let n =
+        name.toLowerCase();
+
+
+    if (
+        n.includes("tv") ||
+        n.includes("تلفزيون")
+    ) {
+
+        return "📺";
+
+    }
+
+
+    if (
+        n.includes("laptop") ||
+        n.includes("كمبيوتر")
+    ) {
+
+        return "💻";
+
+    }
+
+
+    if (
+        n.includes("play") ||
+        n.includes("بلاي")
+    ) {
+
+        return "🎮";
+
+    }
+
+
+    return "📱";
+
+}
+
+
+/* حذف جهاز */
+
+function removeDevice(id) {
+
+    if (
+        confirm(
+            "هل تريد حذف هذا الجهاز؟"
+        )
+    ) {
+
+        devices =
+            devices.filter(
+                device =>
+                    device.id !== id
+            );
+
+        save();
+
+    }
+
+}
+
+
+/* الضغط خارج النافذة */
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target.id === "modal"
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* تشغيل الموقع */
+
+render();
+
+</script>
+
+</body>
+</html>
