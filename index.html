@@ -12,10 +12,6 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
-/* ==================================================
-   الخط والإعدادات
-================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
 
 *{
@@ -37,21 +33,11 @@ body{
     --muted:#aaa;
 }
 
-
-/* ==================================================
-   الحاوية
-================================================== */
-
 .container{
     width:min(1050px,94%);
     margin:auto;
     padding:18px 0 40px;
 }
-
-
-/* ==================================================
-   الهيدر
-================================================== */
 
 header{
     background:linear-gradient(135deg,#0d0d12,#211034);
@@ -59,7 +45,6 @@ header{
     border-radius:24px;
     padding:22px;
     margin-bottom:18px;
-    position:relative;
     overflow:hidden;
 }
 
@@ -73,22 +58,12 @@ header{
     width:58px;
     height:58px;
     border-radius:17px;
-
-    background:
-    linear-gradient(
-        135deg,
-        var(--purple),
-        #4a00c8
-    );
-
+    background:linear-gradient(135deg,var(--purple),#4a00c8);
     display:grid;
     place-items:center;
-
     font-size:25px;
     font-weight:800;
-
-    box-shadow:
-    0 10px 30px #7b2cff55;
+    box-shadow:0 10px 30px #7b2cff55;
 }
 
 h1{
@@ -102,47 +77,26 @@ header p{
     font-size:13px;
 }
 
-
-/* ==================================================
-   شكل الراوتر
-================================================== */
+/* الراوتر */
 
 .router{
     height:110px;
-
-    background:
-    linear-gradient(
-        180deg,
-        #eeeeee,
-        #bfc1c8
-    );
-
+    background:linear-gradient(180deg,#eeeeee,#bfc1c8);
     border-radius:25px;
-
     margin:70px auto 10px;
-
     position:relative;
-
-    box-shadow:
-    0 15px 35px #0008;
-
+    box-shadow:0 15px 35px #0008;
     max-width:650px;
 }
 
 .router::before,
 .router::after{
-
     content:"";
-
     position:absolute;
-
     width:13px;
     height:90px;
-
     background:#777;
-
     border-radius:8px;
-
     top:-54px;
 }
 
@@ -155,89 +109,55 @@ header p{
 }
 
 .router .lights{
-
     position:absolute;
-
     bottom:18px;
-
     left:50%;
-
-    transform:
-    translateX(-50%);
-
+    transform:translateX(-50%);
     display:flex;
-
     gap:8px;
 }
 
 .light{
-
     width:9px;
     height:9px;
-
     border-radius:50%;
-
     background:#6f2cff;
-
-    box-shadow:
-    0 0 12px #7b2cff;
+    box-shadow:0 0 12px #7b2cff;
 }
 
 .router .name{
-
     position:absolute;
-
     right:28px;
     top:35px;
-
     color:#333;
-
     font-weight:800;
 }
 
-
-/* ==================================================
-   الإحصائيات
-================================================== */
+/* الإحصائيات */
 
 .stats{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:12px;
-
     margin-bottom:15px;
 }
 
 .card{
-
     background:var(--card);
-
     border:1px solid var(--border);
-
     border-radius:18px;
-
     padding:18px;
 }
 
 .stat small{
-
     color:var(--muted);
-
     display:block;
-
     font-size:12px;
 }
 
 .stat strong{
-
     font-size:25px;
-
     display:block;
-
     margin-top:4px;
 }
 
@@ -245,107 +165,57 @@ header p{
     color:#a45cff;
 }
 
-
-/* ==================================================
-   شريط الاستهلاك
-================================================== */
+/* البار */
 
 .progressCard{
     margin-bottom:15px;
 }
 
 .progressTop{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:10px;
 }
 
 .bar{
-
     height:13px;
-
     background:#292932;
-
     border-radius:20px;
-
     overflow:hidden;
 }
 
 .fill{
-
     height:100%;
-
     width:0;
-
-    background:
-    linear-gradient(
-        90deg,
-        #6d18ff,
-        #b06cff
-    );
-
+    background:linear-gradient(90deg,#6d18ff,#b06cff);
     border-radius:20px;
-
     transition:.3s;
 }
 
-
-/* ==================================================
-   عنوان الأجهزة
-================================================== */
+/* الأجهزة */
 
 .sectionTitle{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:12px;
 }
 
 .sectionTitle h2{
-
     font-size:18px;
-
     margin:0;
 }
 
-
-/* ==================================================
-   الأزرار
-================================================== */
-
 button{
-
     border:0;
-
     border-radius:12px;
-
     padding:10px 15px;
-
     font-family:inherit;
-
     font-weight:700;
-
     cursor:pointer;
-
     color:#fff;
-
-    background:
-    linear-gradient(
-        135deg,
-        var(--purple),
-        #4d0fc9
-    );
-
-    -webkit-tap-highlight-color:transparent;
+    background:linear-gradient(135deg,var(--purple),#4d0fc9);
 }
 
 button:active{
@@ -357,54 +227,32 @@ button.secondary{
 }
 
 button.danger{
-
     background:#4b1820;
-
     color:#ffb7bf;
 }
 
-
-/* ==================================================
-   الأجهزة
-================================================== */
-
 .devices{
-
     display:grid;
-
     gap:10px;
 }
 
 .device{
-
     display:flex;
-
     align-items:center;
-
     gap:13px;
-
     background:var(--card);
-
     border:1px solid var(--border);
-
     border-radius:16px;
-
     padding:13px;
 }
 
 .icon{
-
     width:43px;
     height:43px;
-
     border-radius:13px;
-
     background:#261343;
-
     display:grid;
-
     place-items:center;
-
     font-size:20px;
 }
 
@@ -413,89 +261,56 @@ button.danger{
 }
 
 .deviceInfo b{
-
     display:block;
-
     font-size:14px;
 }
 
 .deviceInfo span{
-
     font-size:11px;
-
     color:#999;
 }
 
 .used{
-
     text-align:left;
-
     min-width:75px;
 }
 
 .used b{
-
     display:block;
-
     color:#b16bff;
 }
 
 .used span{
-
     font-size:10px;
-
     color:#888;
 }
 
 .actions{
-
     display:flex;
-
     gap:6px;
 }
 
 .actions button{
-
     padding:8px 10px;
-
     font-size:12px;
 }
 
-
-/* ==================================================
-   لا توجد أجهزة
-================================================== */
-
 .empty{
-
     text-align:center;
-
     color:#888;
-
     padding:30px;
 }
 
-
-/* ==================================================
-   النوافذ
-================================================== */
+/* النوافذ */
 
 .modal{
-
     display:none;
-
     position:fixed;
-
     inset:0;
-
     background:#000c;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
-
     z-index:100;
 }
 
@@ -503,21 +318,11 @@ button.danger{
     display:flex;
 }
 
-
-/* ==================================================
-   نافذة إضافة وتعديل
-================================================== */
-
 .modalBox{
-
     width:min(450px,100%);
-
     background:#15151b;
-
     border:1px solid #38204f;
-
     border-radius:22px;
-
     padding:20px;
 }
 
@@ -526,34 +331,21 @@ button.danger{
 }
 
 label{
-
     display:block;
-
     color:#bbb;
-
     font-size:12px;
-
     margin:10px 0 5px;
 }
 
 input{
-
     width:100%;
-
     padding:12px;
-
     border-radius:11px;
-
     border:1px solid #34343e;
-
     background:#0d0d11;
-
     color:white;
-
     font-family:inherit;
-
     outline:none;
-
     font-size:16px;
 }
 
@@ -562,11 +354,8 @@ input:focus{
 }
 
 .modalActions{
-
     display:flex;
-
     gap:8px;
-
     margin-top:18px;
 }
 
@@ -574,240 +363,119 @@ input:focus{
     flex:1;
 }
 
-
-/* ==================================================
-   شاشة الباسورد
-================================================== */
+/* الباسورد */
 
 .passwordBox{
-
     width:min(380px,100%);
-
     background:#15151b;
-
     border:1px solid #38204f;
-
     border-radius:25px;
-
     padding:22px;
-
     text-align:center;
-
-    box-shadow:
-    0 20px 60px #000;
+    box-shadow:0 20px 60px #000;
 }
 
 .passwordBox h3{
-
     margin:0;
-
     font-size:20px;
 }
 
 .passwordBox p{
-
     color:#999;
-
     font-size:12px;
-
     margin:7px 0 15px;
 }
 
-
-/* ==================================================
-   نقاط الباسورد
-================================================== */
-
 .passwordDots{
-
     height:45px;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     direction:ltr;
-
     font-size:25px;
-
     letter-spacing:7px;
-
     color:#a45cff;
-
-    margin-bottom:15px;
 }
 
-
-/* ==================================================
-   لوحة الأرقام
-================================================== */
+.passwordError{
+    color:#ff6565;
+    font-size:12px;
+    min-height:20px;
+}
 
 .keypad{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:9px;
 }
 
 .keypad button{
-
     height:55px;
-
     border-radius:15px;
-
     font-size:20px;
-
     background:#24242c;
-
     border:1px solid #34343e;
 }
 
 .keypad button:active{
-
-    transform:scale(.94);
-
     background:#7b2cff;
 }
 
 .keypad .clear{
-
     font-size:13px;
-
     background:#352020;
-
     color:#ff9c9c;
 }
 
 .keypad .back{
-
     font-size:22px;
-
     background:#252038;
 }
 
 .cancelPassword{
-
     width:100%;
-
     margin-top:12px;
-
     background:#292930;
 }
 
-
-/* ==================================================
-   رسالة خطأ الباسورد
-================================================== */
-
-.passwordError{
-
-    color:#ff6565;
-
-    font-size:12px;
-
-    min-height:20px;
-
-    margin-top:5px;
-}
-
-
-/* ==================================================
-   الفوتر
-================================================== */
-
 footer{
-
     text-align:center;
-
     color:#666;
-
     font-size:11px;
-
     margin-top:20px;
 }
-
-
-/* ==================================================
-   الموبايل
-================================================== */
 
 @media(max-width:650px){
 
     .stats{
-
         grid-template-columns:1fr;
-
     }
 
     .router{
-
         height:90px;
-
     }
 
     .router::before,
     .router::after{
-
         height:65px;
-
         top:-42px;
-
     }
 
     .device{
-
         flex-wrap:wrap;
-
     }
 
     .used{
-
         margin-right:auto;
-
     }
 
     .actions{
-
         width:100%;
-
     }
 
     .actions button{
-
         flex:1;
-
     }
-
-    .sectionTitle{
-
-        gap:10px;
-
-    }
-
-    .sectionTitle h2{
-
-        font-size:16px;
-
-    }
-
-}
-
-
-/* ==================================================
-   منع تحديد أزرار لوحة الأرقام
-================================================== */
-
-.keypad,
-.keypad button{
-
-    user-select:none;
-
-    -webkit-user-select:none;
 
 }
 
@@ -815,16 +483,9 @@ footer{
 
 </head>
 
-
 <body>
 
-
 <div class="container">
-
-
-<!-- ==================================================
-     HEADER
-================================================== -->
 
 <header>
 
@@ -849,8 +510,6 @@ footer{
     </div>
 
 
-    <!-- الراوتر -->
-
     <div class="router">
 
         <div class="name">
@@ -860,11 +519,8 @@ footer{
         <div class="lights">
 
             <i class="light"></i>
-
             <i class="light"></i>
-
             <i class="light"></i>
-
             <i class="light"></i>
 
         </div>
@@ -874,13 +530,9 @@ footer{
 </header>
 
 
-
-<!-- ==================================================
-     الإحصائيات
-================================================== -->
+<!-- الإحصائيات -->
 
 <div class="stats">
-
 
     <div class="card stat">
 
@@ -926,14 +578,10 @@ footer{
 
     </div>
 
-
 </div>
 
 
-
-<!-- ==================================================
-     الاستهلاك
-================================================== -->
+<!-- الاستهلاك -->
 
 <div class="card progressCard">
 
@@ -962,20 +610,15 @@ footer{
 </div>
 
 
-
-<!-- ==================================================
-     الأجهزة
-================================================== -->
+<!-- الأجهزة -->
 
 <div class="card">
-
 
     <div class="sectionTitle">
 
         <h2>
             📱 الأجهزة المتصلة
         </h2>
-
 
         <button onclick="openAdd()">
 
@@ -991,80 +634,58 @@ footer{
         class="devices">
     </div>
 
-
 </div>
 
 
 <footer>
 
-    نظام تجريبي — البيانات تُحفظ على هذا الجهاز
+    نظام تجريبي — البيانات محفوظة على Firebase
 
 </footer>
-
 
 </div>
 
 
-
-<!-- ==================================================
-     نافذة إضافة / تعديل
-================================================== -->
+<!-- نافذة الجهاز -->
 
 <div
     class="modal"
     id="modal">
 
-
     <div class="modalBox">
 
-
         <h3 id="modalTitle">
-
             إضافة جهاز
-
         </h3>
 
-
         <label>
-
             اسم الجهاز
-
         </label>
-
 
         <input
             id="deviceName"
-            placeholder="اسم الجهاز"
-            autocomplete="off"
-            inputmode="none">
+            placeholder="مثال: Redmi 12C"
+            autocomplete="off">
 
 
         <label>
-
             الاستهلاك بالجيجابايت
-
         </label>
-
 
         <input
             id="deviceUsage"
             type="number"
             min="0"
             step="0.1"
-            placeholder="مثال: 15"
-            autocomplete="off"
-            inputmode="none">
+            placeholder="مثال: 20"
+            autocomplete="off">
 
 
         <div class="modalActions">
 
-
             <button onclick="saveDevice()">
-
                 حفظ
-
             </button>
-
 
             <button
                 class="secondary"
@@ -1074,43 +695,29 @@ footer{
 
             </button>
 
-
         </div>
-
 
     </div>
 
 </div>
 
 
-
-<!-- ==================================================
-     شاشة الباسورد
-================================================== -->
+<!-- باسورد الإدارة -->
 
 <div
     class="modal"
     id="passwordModal">
 
-
     <div class="passwordBox">
 
-
         <h3>
-
             🔐 تأكيد العملية
-
         </h3>
 
-
         <p>
-
             أدخل كلمة المرور للمتابعة
-
         </p>
 
-
-        <!-- نقاط الباسورد -->
 
         <div
             class="passwordDots"
@@ -1121,57 +728,25 @@ footer{
         </div>
 
 
-        <!-- رسالة الخطأ -->
-
         <div
             class="passwordError"
             id="passwordError">
         </div>
 
 
-        <!-- لوحة الأرقام -->
-
         <div class="keypad">
 
+            <button onclick="pressKey('1')">1</button>
+            <button onclick="pressKey('2')">2</button>
+            <button onclick="pressKey('3')">3</button>
 
-            <button onclick="pressKey('1')">
-                1
-            </button>
+            <button onclick="pressKey('4')">4</button>
+            <button onclick="pressKey('5')">5</button>
+            <button onclick="pressKey('6')">6</button>
 
-            <button onclick="pressKey('2')">
-                2
-            </button>
-
-            <button onclick="pressKey('3')">
-                3
-            </button>
-
-
-            <button onclick="pressKey('4')">
-                4
-            </button>
-
-            <button onclick="pressKey('5')">
-                5
-            </button>
-
-            <button onclick="pressKey('6')">
-                6
-            </button>
-
-
-            <button onclick="pressKey('7')">
-                7
-            </button>
-
-            <button onclick="pressKey('8')">
-                8
-            </button>
-
-            <button onclick="pressKey('9')">
-                9
-            </button>
-
+            <button onclick="pressKey('7')">7</button>
+            <button onclick="pressKey('8')">8</button>
+            <button onclick="pressKey('9')">9</button>
 
             <button
                 class="clear"
@@ -1181,13 +756,9 @@ footer{
 
             </button>
 
-
             <button onclick="pressKey('0')">
-
                 0
-
             </button>
-
 
             <button
                 class="back"
@@ -1196,7 +767,6 @@ footer{
                 ⌫
 
             </button>
-
 
         </div>
 
@@ -1209,129 +779,276 @@ footer{
 
         </button>
 
-
     </div>
 
 </div>
 
 
+<!-- Firebase -->
 
-<script>
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getDatabase,
+    ref,
+    set,
+    onValue
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
 /* ==================================================
-   الإعدادات
+   بيانات مشروع Firebase الخاص بك
 ================================================== */
 
+const firebaseConfig = {
 
-/*
-   كلمة مرور الإدارة
-*/
+    apiKey:
+        "AIzaSyALknAXGEt4k_5c26WUYT2-tE00lwG6CMc",
 
-const ADMIN_PASSWORD = "2009";
+    authDomain:
+        "my-we-7be7c.firebaseapp.com",
+
+    /*
+       لو Firebase أعطاك Database URL مختلف،
+       استبدله هنا.
+    */
+
+    databaseURL:
+        "https://my-we-7be7c-default-rtdb.firebaseio.com",
+
+    projectId:
+        "my-we-7be7c",
+
+    storageBucket:
+        "my-we-7be7c.firebasestorage.app",
+
+    messagingSenderId:
+        "286975925668",
+
+    appId:
+        "1:286975925668:web:cb30205ff611ead38f7531"
+
+};
 
 
-/*
-   إجمالي الباقة
-*/
+/* تشغيل Firebase */
 
-const TOTAL_PACKAGE = 250;
+const app =
+    initializeApp(
+        firebaseConfig
+    );
 
 
-/*
-   مفتاح حفظ الأجهزة
-*/
+const database =
+    getDatabase(app);
 
-const STORAGE_KEY =
-    "we_router_devices_final";
+
+/* مكان تخزين الأجهزة */
+
+const devicesRef =
+    ref(
+        database,
+        "router/devices"
+    );
+
+
+/* كلمة المرور */
+
+const ADMIN_PASSWORD =
+    "2009";
+
+
+/* إجمالي الباقة */
+
+const TOTAL_PACKAGE =
+    250;
+
+
+/* الأجهزة */
+
+let devices = [];
+
+
+/* حالة التعديل */
+
+let editing = null;
+
+
+/* الباسورد */
+
+let passwordInput = "";
+
+
+/* العملية المطلوبة */
+
+let pendingAction = null;
+
+
+/* رقم الجهاز المطلوب */
+
+let pendingId = null;
 
 
 /* ==================================================
    الأجهزة الافتراضية
 ================================================== */
 
-let devices =
-    JSON.parse(
-        localStorage.getItem(
-            STORAGE_KEY
-        )
-    );
+const defaultDevices = [
 
+    {
+        id:1,
+        name:"Redmi 12C",
+        usage:18,
+        icon:"📱"
+    },
 
-/*
-   لو مفيش بيانات محفوظة
-   استخدم الأجهزة دي
-*/
+    {
+        id:2,
+        name:"Realme 6i",
+        usage:24,
+        icon:"📱"
+    },
 
-if(!devices){
+    {
+        id:3,
+        name:"OPPO A15",
+        usage:15,
+        icon:"📱"
+    },
 
-    devices = [
+    {
+        id:4,
+        name:"Redmi 15 5G",
+        usage:32,
+        icon:"📱"
+    },
 
-        {
-            id:1,
-            name:"Redmi 12C",
-            usage:18,
-            icon:"📱"
-        },
+    {
+        id:5,
+        name:"Compaq Laptop",
+        usage:41,
+        icon:"💻"
+    },
 
-        {
-            id:2,
-            name:"Realme 6i",
-            usage:24,
-            icon:"📱"
-        },
+    {
+        id:6,
+        name:"Lenovo Tablet",
+        usage:20,
+        icon:"📱"
+    },
 
-        {
-            id:3,
-            name:"OPPO A15",
-            usage:15,
-            icon:"📱"
-        },
+    {
+        id:7,
+        name:"Redmi 5",
+        usage:12,
+        icon:"📱"
+    }
 
-        {
-            id:4,
-            name:"Redmi 15 5G",
-            usage:32,
-            icon:"📱"
-        },
-
-        {
-            id:5,
-            name:"Compaq Laptop",
-            usage:41,
-            icon:"💻"
-        },
-
-        {
-            id:6,
-            name:"Lenovo Tablet",
-            usage:20,
-            icon:"📱"
-        },
-
-        {
-            id:7,
-            name:"Redmi 5",
-            usage:12,
-            icon:"📱"
-        }
-
-    ];
-
-}
+];
 
 
 /* ==================================================
-   متغيرات النظام
+   استقبال البيانات لحظيًا
 ================================================== */
 
-let editing = null;
+onValue(
 
-let passwordInput = "";
+    devicesRef,
 
-let pendingAction = null;
+    (snapshot) => {
 
-let pendingId = null;
+        const data =
+            snapshot.val();
+
+
+        /*
+           أول مرة فقط:
+           لو مفيش بيانات في Firebase
+        */
+
+        if(data === null){
+
+            devices =
+                defaultDevices;
+
+
+            set(
+                devicesRef,
+                devices
+            );
+
+            return;
+
+        }
+
+
+        if(Array.isArray(data)){
+
+            devices =
+                data;
+
+        }
+
+        else{
+
+            devices =
+                Object.values(data);
+
+        }
+
+
+        render();
+
+    },
+
+    (error) => {
+
+        console.error(error);
+
+        alert(
+            "خطأ في الاتصال بـ Firebase. تأكد من تفعيل Realtime Database."
+        );
+
+    }
+
+);
+
+
+/* ==================================================
+   حفظ البيانات
+================================================== */
+
+async function saveData(){
+
+    try{
+
+        await set(
+            devicesRef,
+            devices
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "تعذر حفظ البيانات."
+        );
+
+    }
+
+}
 
 
 /* ==================================================
@@ -1340,29 +1057,22 @@ let pendingId = null;
 
 function render(){
 
-
-    /*
-       حساب الاستهلاك
-    */
-
     let used =
         devices.reduce(
 
-            (sum,device) =>
+            (sum,device) => {
 
-            sum +
-            Number(
-                device.usage || 0
-            ),
+                return sum +
+                    Number(
+                        device.usage || 0
+                    );
+
+            },
 
             0
 
         );
 
-
-    /*
-       المتبقي
-    */
 
     let remaining =
         Math.max(
@@ -1371,26 +1081,12 @@ function render(){
         );
 
 
-    /*
-       النسبة
-    */
-
     let percent =
         Math.min(
-
-            (
-                used /
-                TOTAL_PACKAGE
-            ) * 100,
-
+            (used / TOTAL_PACKAGE) * 100,
             100
-
         );
 
-
-    /*
-       إجمالي الباقة
-    */
 
     document
     .getElementById("total")
@@ -1401,31 +1097,23 @@ function render(){
         " GB";
 
 
-    /*
-       المستخدم
-    */
-
     document
     .getElementById("used")
     .textContent =
-        formatNumber(used) +
+        formatNumber(
+            used
+        ) +
         " GB";
 
-
-    /*
-       المتبقي
-    */
 
     document
     .getElementById("remaining")
     .textContent =
-        formatNumber(remaining) +
+        formatNumber(
+            remaining
+        ) +
         " GB";
 
-
-    /*
-       النسبة
-    */
 
     document
     .getElementById("percent")
@@ -1434,10 +1122,6 @@ function render(){
         "%";
 
 
-    /*
-       شريط الاستهلاك
-    */
-
     document
     .getElementById("fill")
     .style.width =
@@ -1445,28 +1129,17 @@ function render(){
         "%";
 
 
-    /*
-       الأجهزة
-    */
-
     const box =
-        document.getElementById(
-            "devices"
-        );
+        document
+        .getElementById("devices");
 
-
-    /*
-       لو مفيش أجهزة
-    */
 
     if(devices.length === 0){
 
         box.innerHTML = `
 
             <div class="empty">
-
                 لا توجد أجهزة مضافة
-
             </div>
 
         `;
@@ -1476,17 +1149,12 @@ function render(){
     }
 
 
-    /*
-       عرض الأجهزة
-    */
-
     box.innerHTML =
 
         devices.map(
             device => `
 
                 <div class="device">
-
 
                     <div class="icon">
 
@@ -1506,9 +1174,7 @@ function render(){
                         </b>
 
                         <span>
-
                             استهلاك الجهاز
-
                         </span>
 
                     </div>
@@ -1521,21 +1187,19 @@ function render(){
                             ${formatNumber(
                                 device.usage
                             )}
+
                             GB
 
                         </b>
 
                         <span>
-
                             مستخدم
-
                         </span>
 
                     </div>
 
 
                     <div class="actions">
-
 
                         <button
                             class="secondary"
@@ -1562,9 +1226,7 @@ function render(){
 
                         </button>
 
-
                     </div>
-
 
                 </div>
 
@@ -1575,91 +1237,67 @@ function render(){
 
 
 /* ==================================================
-   تنسيق الأرقام
+   تنسيق الرقم
 ================================================== */
 
 function formatNumber(number){
 
     return Number(number)
-        .toLocaleString(
-            "ar-EG",
-            {
-                maximumFractionDigits:1
-            }
-        );
+    .toLocaleString(
+        "ar-EG",
+        {
+            maximumFractionDigits:1
+        }
+    );
 
 }
 
 
 /* ==================================================
-   حماية النص
+   حماية HTML
 ================================================== */
 
 function escapeHTML(text){
 
     return String(text)
-        .replace(
-            /[&<>"']/g,
-            function(match){
+    .replace(
+        /[&<>"']/g,
+        function(match){
 
-                const chars = {
+            const chars = {
 
-                    "&":"&amp;",
-                    "<":"&lt;",
-                    ">":"&gt;",
-                    '"':"&quot;",
-                    "'":"&#039;"
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
 
-                };
+            };
 
-                return chars[match];
+            return chars[match];
 
-            }
-        );
-
-}
-
-
-/* ==================================================
-   حفظ البيانات
-================================================== */
-
-function saveData(){
-
-    localStorage.setItem(
-
-        STORAGE_KEY,
-
-        JSON.stringify(
-            devices
-        )
-
+        }
     );
 
-    render();
-
 }
 
 
 /* ==================================================
-   فتح إضافة جهاز
+   إضافة
 ================================================== */
 
-function openAdd(){
-
-    /*
-       طلب الباسورد
-    */
+window.openAdd =
+function(){
 
     askPassword(
         "add"
     );
 
-}
+};
 
 
 /* ==================================================
-   فتح نموذج الإضافة بعد الباسورد
+   نموذج الإضافة
 ================================================== */
 
 function openAddForm(){
@@ -1701,42 +1339,41 @@ function openAddForm(){
 
 
 /* ==================================================
-   تعديل الجهاز
+   تعديل
 ================================================== */
 
-function editDevice(id){
+window.editDevice =
+function(id){
 
     askPassword(
         "edit",
         id
     );
 
-}
+};
 
 
 /* ==================================================
-   فتح نموذج التعديل
+   نموذج التعديل
 ================================================== */
 
 function openEditForm(id){
 
-    let device =
+    const device =
         devices.find(
-
             item =>
-                item.id === id
-
+                Number(item.id) ===
+                Number(id)
         );
 
 
     if(!device){
-
         return;
-
     }
 
 
-    editing = id;
+    editing =
+        Number(id);
 
 
     document
@@ -1775,46 +1412,49 @@ function openEditForm(id){
 
 
 /* ==================================================
-   حذف الجهاز
+   حذف
 ================================================== */
 
-function removeDevice(id){
+window.removeDevice =
+function(id){
 
     askPassword(
         "delete",
         id
     );
 
-}
+};
 
 
 /* ==================================================
-   تنفيذ الحذف بعد الباسورد
+   تنفيذ الحذف
 ================================================== */
 
-function deleteDevice(id){
+async function deleteDevice(id){
 
     devices =
         devices.filter(
 
             device =>
-                device.id !== id
+                Number(device.id) !==
+                Number(id)
 
         );
 
 
-    saveData();
+    await saveData();
 
 }
 
 
 /* ==================================================
-   حفظ إضافة / تعديل
+   حفظ جهاز
 ================================================== */
 
-function saveDevice(){
+window.saveDevice =
+async function(){
 
-    let name =
+    const name =
         document
         .getElementById(
             "deviceName"
@@ -1823,7 +1463,7 @@ function saveDevice(){
         .trim();
 
 
-    let usage =
+    const usage =
         Number(
             document
             .getElementById(
@@ -1833,24 +1473,14 @@ function saveDevice(){
         );
 
 
-    /*
-       التحقق
-    */
-
     if(
-
         !name ||
-
-        usage < 0 ||
-
-        Number.isNaN(
-            usage
-        )
-
+        Number.isNaN(usage) ||
+        usage < 0
     ){
 
         alert(
-            "من فضلك أدخل البيانات بشكل صحيح"
+            "من فضلك أدخل البيانات بشكل صحيح."
         );
 
         return;
@@ -1858,18 +1488,13 @@ function saveDevice(){
     }
 
 
-    /*
-       تعديل
-    */
+    if(editing !== null){
 
-    if(editing){
-
-        let device =
+        const device =
             devices.find(
-
                 item =>
-                    item.id === editing
-
+                    Number(item.id) ===
+                    Number(editing)
             );
 
 
@@ -1881,14 +1506,14 @@ function saveDevice(){
             device.usage =
                 usage;
 
+            device.icon =
+                getDeviceIcon(
+                    name
+                );
+
         }
 
     }
-
-
-    /*
-       إضافة
-    */
 
     else{
 
@@ -1913,40 +1538,27 @@ function saveDevice(){
     }
 
 
-    /*
-       إغلاق النافذة
-    */
-
     closeModal();
 
+    await saveData();
 
-    /*
-       حفظ
-    */
-
-    saveData();
-
-}
+};
 
 
 /* ==================================================
-   أيقونة الجهاز
+   تحديد الأيقونة
 ================================================== */
 
 function getDeviceIcon(name){
 
-    let n =
+    const n =
         name.toLowerCase();
 
 
     if(
-
         n.includes("laptop") ||
-
         n.includes("compaq") ||
-
         n.includes("لاب")
-
     ){
 
         return "💻";
@@ -1955,13 +1567,9 @@ function getDeviceIcon(name){
 
 
     if(
-
         n.includes("tablet") ||
-
         n.includes("تابلت") ||
-
         n.includes("lenovo")
-
     ){
 
         return "📱";
@@ -1975,10 +1583,11 @@ function getDeviceIcon(name){
 
 
 /* ==================================================
-   إغلاق نموذج الجهاز
+   إغلاق نافذة الجهاز
 ================================================== */
 
-function closeModal(){
+window.closeModal =
+function(){
 
     document
     .getElementById(
@@ -1988,11 +1597,11 @@ function closeModal(){
         "show"
     );
 
-}
+};
 
 
 /* ==================================================
-   فتح شاشة الباسورد
+   فتح الباسورد
 ================================================== */
 
 function askPassword(
@@ -2003,10 +1612,8 @@ function askPassword(
     pendingAction =
         action;
 
-
     pendingId =
         id;
-
 
     passwordInput =
         "";
@@ -2035,21 +1642,16 @@ function askPassword(
 
 
 /* ==================================================
-   إدخال رقم
+   أرقام الباسورد
 ================================================== */
 
-function pressKey(number){
-
-    /*
-       أقصى 4 أرقام
-    */
+window.pressKey =
+function(number){
 
     if(
         passwordInput.length >= 4
     ){
-
         return;
-
     }
 
 
@@ -2060,56 +1662,39 @@ function pressKey(number){
     updatePasswordDots();
 
 
-    /*
-       فحص تلقائي بعد الرقم الرابع
-    */
-
     if(
         passwordInput.length === 4
     ){
 
         setTimeout(
-
             checkPassword,
-
-            180
-
+            150
         );
 
     }
 
-}
+};
 
 
 /* ==================================================
-   عرض النقاط
+   نقاط الباسورد
 ================================================== */
 
 function updatePasswordDots(){
 
-    let dots = "";
+    let result = "";
 
 
     for(
-        let i = 0;
-        i < 4;
+        let i=0;
+        i<4;
         i++
     ){
 
-        if(
-            i <
-            passwordInput.length
-        ){
-
-            dots += "● ";
-
-        }
-
-        else{
-
-            dots += "○ ";
-
-        }
+        result +=
+            i < passwordInput.length
+            ? "● "
+            : "○ ";
 
     }
 
@@ -2119,16 +1704,17 @@ function updatePasswordDots(){
         "passwordDots"
     )
     .textContent =
-        dots;
+        result;
 
 }
 
 
 /* ==================================================
-   حذف آخر رقم
+   حذف رقم
 ================================================== */
 
-function backspace(){
+window.backspace =
+function(){
 
     passwordInput =
         passwordInput.slice(
@@ -2147,14 +1733,15 @@ function backspace(){
 
     updatePasswordDots();
 
-}
+};
 
 
 /* ==================================================
-   مسح الباسورد
+   مسح
 ================================================== */
 
-function clearPassword(){
+window.clearPassword =
+function(){
 
     passwordInput =
         "";
@@ -2170,18 +1757,14 @@ function clearPassword(){
 
     updatePasswordDots();
 
-}
+};
 
 
 /* ==================================================
-   فحص الباسورد
+   فحص كلمة المرور
 ================================================== */
 
 function checkPassword(){
-
-    /*
-       الباسورد الصحيح
-    */
 
     if(
         passwordInput ===
@@ -2216,7 +1799,7 @@ function checkPassword(){
 
 
 /* ==================================================
-   تنفيذ العملية المطلوبة
+   تنفيذ العملية بعد الباسورد
 ================================================== */
 
 function executePendingAction(){
@@ -2230,7 +1813,6 @@ function executePendingAction(){
 
     }
 
-
     else if(
         pendingAction ===
         "edit"
@@ -2241,7 +1823,6 @@ function executePendingAction(){
         );
 
     }
-
 
     else if(
         pendingAction ===
@@ -2265,10 +1846,11 @@ function executePendingAction(){
 
 
 /* ==================================================
-   إغلاق شاشة الباسورد
+   إغلاق الباسورد
 ================================================== */
 
-function closePassword(){
+window.closePassword =
+function(){
 
     document
     .getElementById(
@@ -2285,17 +1867,15 @@ function closePassword(){
 
     updatePasswordDots();
 
-}
+};
 
 
 /* ==================================================
-   إغلاق المودال بالضغط خارجها
+   إغلاق بالنقر خارج النافذة
 ================================================== */
 
 document
-.getElementById(
-    "modal"
-)
+.getElementById("modal")
 .addEventListener(
     "click",
     function(event){
@@ -2313,14 +1893,8 @@ document
 );
 
 
-/* ==================================================
-   إغلاق شاشة الباسورد من الخارج
-================================================== */
-
 document
-.getElementById(
-    "passwordModal"
-)
+.getElementById("passwordModal")
 .addEventListener(
     "click",
     function(event){
@@ -2337,16 +1911,8 @@ document
     }
 );
 
-
-/* ==================================================
-   تشغيل الموقع
-================================================== */
-
-render();
-
 </script>
-
 
 </body>
 
-    </html>
+   </html>
